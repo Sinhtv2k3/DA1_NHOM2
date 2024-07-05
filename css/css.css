@@ -1,0 +1,815 @@
+* {
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(249, 249, 249);
+}
+
+.trangchu {
+    width: 85%;
+    margin: 0 auto;
+
+}
+
+.row {
+    width: 100%;
+}
+
+.row .page_header {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 0, 0.912);
+    display: flex;
+    padding-top: 13px;
+    text-align: center;
+}
+
+.row .page_header .search {
+    width: 60%;
+    padding-top: 40px;
+    background-color: rgba(8, 80, 235, 0.912);
+
+}
+
+input[type="search"] {
+    height: 40px;
+    width: 630px;
+    border-radius: 40px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-left: 50px;
+
+
+}
+
+.headers {
+    display: flex;
+}
+
+.search {
+    width: 60%;
+    padding-top: 40px;
+    background-color: rgba(8, 80, 235, 0.912);
+
+}
+
+.congcu {
+    width: 30%;
+    padding-top: 40px;
+    background-color: rgba(8, 80, 235, 0.912);
+    text-decoration: none;
+}
+
+.congcu a {
+    color: aliceblue;
+    text-decoration: none;
+    margin: auto;
+    font-size: 20px;
+}
+
+.logo {
+    background-color: rgba(255, 255, 0, 0.912);
+    margin-right: 5px;
+}
+
+.page_header {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 0, 0.912);
+    display: flex;
+    padding-top: 13px;
+
+    text-align: center;
+}
+
+.page_header a {
+    text-decoration: none;
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.page_header a:hover {
+    color: rgb(255, 36, 36);
+    font-weight: 500;
+
+}
+
+.home {
+    width: 17%;
+
+}
+
+.gopy {
+    width: 17%;
+}
+
+.lienhe {
+    width: 17%;
+}
+
+.gioithieu {
+    width: 17%;
+}
+
+.xemtham {
+    width: 17%;
+}
+
+.banner {
+    width: 100%;
+    display: flex;
+    padding-top: 10px;
+    height: 410px;
+}
+
+.banner_left {
+    width: 20%;
+    height: 300px;
+}
+
+.banner_right {
+    width: 20%;
+    height: 300px;
+}
+
+.slide {
+    width: 60%;
+    height: 300px;
+}
+
+.danhmuctop10 {
+    height: 200px;
+    background-color: rgb(254, 249, 228);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.topdm {
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    background-color: rgb(222, 222, 223);
+    padding: 10px;
+}
+
+.tieude {
+    text-align: center;
+}
+
+.tieude a {
+    text-decoration: none;
+    color: black;
+}
+
+.tieude strong {
+    color: rgb(7, 67, 119);
+    padding: 0 0 0 5px;
+    width: 100%;
+}
+
+.chitiet {
+    width: 20%;
+    text-align: center;
+}
+
+link {
+    text-decoration: none;
+}
+
+.row .danhmuctop10 {
+    display: flex;
+    text-align: center;
+}
+
+.danhmuctop10 a {
+    text-decoration: none;
+    color: black;
+}
+
+.danhmuctop10 strong {
+    color: rgb(7, 67, 119);
+    padding: 0 0 0 5px;
+    width: 100%;
+}
+
+.danhmuctop10 p {
+    color: #f2472b;
+    padding: 5px 0;
+}
+
+.danhmuctop10:hover {
+    box-shadow: 5px 5px 5px 5px pink;
+    font-weight: 1000;
+}
+
+
+.tieudesp {
+    background-color: white;
+}
+
+
+.sp {
+    border: 1px solid black;
+}
+
+.sp:hover {
+    box-shadow: 5px 5px 5px 5px pink;
+    font-weight: 800;
+}
+
+.sp a {
+    text-decoration: none;
+    color: black;
+}
+
+/* .boxspct {
+    float: left;
+    width: 3030%;
+    border: 1px #eee solid;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    margin-left: 22px;
+    text-align: center;
+    padding: 30px 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 50%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+} */
+
+/* .sp img {
+    width: 100%;
+    overflow: hidden;
+}
+
+.sp img:hover {
+    transform: scale(1.1);
+    transition: 1s;
+} */
+*/ .sp p {
+    color: #f2472b;
+
+}
+
+.goiysp {
+    margin-bottom: 10px;
+    background-color: aqua;
+
+}
+
+.tengoiy strong {
+    color: blue;
+    padding: 20px 20px;
+}
+
+.goiy>img {
+    width: 100%;
+
+}
+
+.footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.footer p:last-child {
+    margin-bottom: 0;
+}
+
+/* ======phần css của admin======*/
+
+.tieudead {
+    height: 115px;
+    background-color: aqua;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 20px;
+}
+
+.box {
+    width: 100%;
+
+}
+
+.boxtrai {
+    width: 20%;
+    border-radius: 20px 20px;
+    background-color: rgba(40, 40, 40, 0.869);
+    display: block;
+
+}
+
+.loai {
+    text-align: center;
+    margin-bottom: 50px;
+
+    padding-bottom: 20px;
+
+}
+
+.loai a {
+    height: 20px;
+    width: 100%;
+    text-decoration: none;
+    color: rgba(227, 227, 227, 0.941);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.loai li {
+    list-style: none;
+    margin-bottom: 20px;
+    margin-right: 30px;
+}
+
+.loai li:hover {
+    color: aliceblue;
+    font-weight: 900;
+}
+
+.hieuung li:hover {
+    background-color: rgba(104, 104, 104, 0.869);
+}
+
+.logoam {
+    background-color: aliceblue;
+    border: none;
+}
+
+.tren {
+    border-radius: 40px 40px;
+}
+
+.box {
+    display: flex;
+}
+
+.boxphai {
+    margin-left: 10px;
+    width: 100%;
+    background-color: white;
+}
+
+.tieudeb {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(74, 74, 255);
+    text-align: center;
+    padding-top: 1px;
+
+}
+
+.bang {
+    padding: 20px 0px;
+    text-align: center;
+
+}
+
+.bang input[type="text"] {
+    height: 40px;
+    width: 500px;
+}
+
+.maloai {
+    margin-bottom: 10px;
+}
+
+.nut {
+    margin-top: 20px;
+}
+
+.nut input[type="submit"] {
+    height: 45px;
+    width: 100px;
+
+    border-radius: 10px;
+    background-color: rgb(100, 100, 255);
+    color: white;
+    font-size: 18px;
+    border: none;
+
+}
+
+.nut input[type="button"] {
+    height: 45px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 255);
+    color: white;
+    font-size: 18px;
+    border: none;
+}
+
+.nut input[type="submit"]:hover {
+    background-color: rgb(3, 3, 178);
+    color: rgb(247, 24, 24);
+    box-shadow: 2px 2px rgba(247, 88, 88, 0.455);
+}
+
+.nut input[type="button"]:hover {
+    background-color: rgb(3, 3, 178);
+    color: rgb(247, 24, 24);
+    box-shadow: 2px 2px rgba(247, 88, 88, 0.455);
+}
+
+.bangl table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #999;
+}
+
+.bangl table th {
+    padding: 20px;
+    background-color: #ccc;
+}
+
+
+.bangl table td {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+}
+
+.confim {
+    text-decoration: none;
+    border: 1px solid black;
+}
+
+/* -----------chi tiets sp ---------------- */
+.allsp {
+    display: flex;
+}
+
+.bentrai {
+    width: 23%;
+    background-color: white;
+    margin-right: 10px;
+}
+
+.formloc {
+    padding: 10px;
+}
+
+.tenloc {
+    padding: 10px;
+}
+
+.loc input[type="number"] {
+    height: 50px;
+    width: 100px;
+    border-radius: 9px;
+    border: 1px solid black;
+}
+
+.sub input[type="submit"] {
+    height: 33px;
+    width: 80px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: none;
+    background-color: rgb(92, 92, 248);
+    color: white;
+    font-size: 17px;
+}
+
+.sub input[type="submit"]:hover {
+    background-color: rgb(5, 5, 214);
+}
+
+.benphai {
+    background-color: white;
+    width: 77%;
+
+}
+
+.boxsp {
+    float: left;
+    width: 30%;
+    border: 1px #eee solid;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    margin-left: 22px;
+    text-align: center;
+    padding: 30px 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 50%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+}
+
+.boxsp a {
+    text-decoration: none;
+    color: #000;
+    line-height: 20px;
+}
+
+.boxsp a:hover {
+    color: red;
+}
+
+.boxsp img {
+    width: 100%;
+    overflow: hidden;
+}
+
+.boxsp img:hover {
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+/* .----------foooter--------------- */
+.foter {
+    background-color: rgb(70, 70, 246);
+    text-align: center;
+    font-size: 20px;
+}
+
+.odmm {
+    height: 40px;
+    width: 200px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.odm input[type="submit"] {
+    height: 35px;
+    width: 80px;
+    border-radius: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.odm {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tima {
+    height: 35px;
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+/* -----------------------------chi tiết sp-------------------------------- */
+.spchitiet {
+    float: left;
+    width: 100%;
+    border: 1px #eee solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 30px 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 50%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+    display: flex;
+}
+
+.trai {
+    width: 25%;
+    margin-right: 20px;
+    background-color: #dadada;
+}
+
+.phai {
+    width: 80%;
+}
+
+.namesp strong {
+    color: rgb(2, 2, 158);
+    font-size: 25px;
+}
+
+.boxtt {
+    display: flex;
+    width: 100%;
+}
+
+.cttrai {
+    width: 75%;
+    margin-right: 10px;
+}
+
+.price {
+    width: 100%;
+    background-color: #dcdbdb;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.price>strong {
+
+    color: red;
+    font-size: 35px;
+
+}
+
+.price a {
+    text-decoration: none;
+    color: rgb(28, 28, 250);
+}
+
+.tien {
+    color: #5f5f5f;
+    font-size: 20px;
+}
+
+.voucher {
+    width: 100%;
+    height: 90px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.imgvoucher {
+    width: 20%;
+
+}
+
+.test {
+    width: 80%;
+
+}
+
+.voucher img {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.bangsize {
+    width: 80%;
+    height: 80px;
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+}
+
+.size {
+    width: 65px;
+    height: 35px;
+    border: 1px solid black;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.sizes {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.size :hover {
+    border-color: #f2472b;
+}
+
+.soluong {
+    width: 100%;
+    display: flex;
+
+}
+
+.sol input[type="number"] {
+    width: 200px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.datmua button {
+    width: 100px;
+    background-color: orange;
+    border: none;
+    border-radius: 30px;
+    color: white;
+}
+
+.datmua button:hover {
+    opacity: 1;
+    background-color: yellowgreen;
+    box-shadow: 4px 4px 7px 1px black
+}
+
+.datmua button img:hover {
+
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.luuy {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.anhn {
+    width: 100%;
+    text-align: center;
+}
+
+.tendm a {
+    text-decoration: none;
+    color: rgb(1, 1, 135);
+}
+
+.top10sps {
+    width: 100%;
+    margin-left: 11px;
+}
+
+.post {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.menudm {
+    width: 100%;
+    background-color: #eaeffe;
+    border: 1px solid black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.col-2 a:hover {
+    background-color: rgba(193, 193, 193, 0.686);
+}
+
+.headerday {
+    background-color: #eaeffe;
+    padding: 10px;
+}
+
+.allsp {
+    padding-top: 30px;
+    padding-right: 11px;
+}
+
+.vehome a {
+    text-decoration: none;
+    color: #000;
+
+}
+
+.vehome a:hover {
+    color: #f2472b;
+
+}
+
+/* ---------menu tk---------------------- */
+.menutk ul {
+    background: #7FFFD4;
+    list-style-type: none;
+    text-align: center;
+}
+
+.menutk li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.menutk ul li a {
+    text-decoration: none;
+
+    display: block;
+}
+
+.menutk ul li a:hover {
+    background: #F1F1F1;
+    color: #0C0A0A;
+}
+
+.menutk ul li>.sub-menutk {
+    display: none;
+    position: absolute;
+}
+
+.menutk li {
+    position: relative;
+}
+
+.sub-menutk {
+    display: none;
+    position: absolute;
+}
+
+.menutk ul li:hover .sub-menutk {
+    display: block;
+}
