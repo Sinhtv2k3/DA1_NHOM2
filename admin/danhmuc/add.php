@@ -24,12 +24,12 @@
             <form name="myForm" action="index.php?act=adddm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                 <div class="maloai">
                     Mã Loại<br>
-                    <input type="text" name="maloai" disabled>
+                    <input type="text" name="maloai" placeholder="Tự động tăng" disabled>
                 </div>
-                <div class="maloai">
+                <!-- <div class="maloai">
                     Hình<br>
                     <input type="file" name="hinh">
-                </div>
+                </div> -->
                 <div class="maloai">
                     Tên Loại<br>
                     <input type="text" name="tenloai">

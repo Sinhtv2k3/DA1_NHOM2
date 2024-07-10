@@ -133,80 +133,80 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             //     $listsanpham = loadall_sanpham();
             //     include "sanpham/list.php";
             //     break;
-        case 'taikhoan':
-            $listtaikhoan = loadall_taikhoan();
-            include "taikhoan/list.php";
-            break;
-        case 'xoatk':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                delete_taikhoan($_GET['id']);
-            }
-            $listtaikhoan = loadall_taikhoan();
-            include "taikhoan/list.php";
-            break;
-        case 'dsbl':
-            $listbinhluan = loadall_binhluan(0);
-            include "binhluan/binhluan.php";
-            break;
-        case 'xoabl':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                delete_binhluan($_GET['id']);
-            }
-            $listbinhluan = loadall_binhluan(0);
-            include "binhluan/binhluan.php";
-            break;
+        // case 'taikhoan':
+        //     $listtaikhoan = loadall_taikhoan();
+        //     include "taikhoan/list.php";
+        //     break;
+        // case 'xoatk':
+        //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+        //         delete_taikhoan($_GET['id']);
+        //     }
+        //     $listtaikhoan = loadall_taikhoan();
+        //     include "taikhoan/list.php";
+        //     break;
+        // case 'dsbl':
+        //     $listbinhluan = loadall_binhluan(0);
+        //     include "binhluan/binhluan.php";
+        //     break;
+        // case 'xoabl':
+        //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+        //         delete_binhluan($_GET['id']);
+        //     }
+        //     $listbinhluan = loadall_binhluan(0);
+        //     include "binhluan/binhluan.php";
+        //     break;
 
 
 
-        case 'donhang': {
-                $listbill = loadall_bill();
-                include 'donhang/listdh.php';
-                break;
-            }
-        case 'ttdh': {
-                if (isset($_GET['iddh']) && ($_GET['iddh'])) {
-                    $bill = loadone_bill($_GET['iddh']);
-                }
-                if (isset($_POST['btnsub'])) {
-                    $iddh = $_POST['iddh'];
-                    $ttdh = $_POST['ttdh'];
-                    thaydoi_trangthai($ttdh, $iddh);
-                    header('location: ?act=donhang');
-                }
-                include 'donhang/ttdh.php';
-                break;
-            }
-        case 'thongke':
-            $listthongke = loadall_thongke();
-            include "thongke.php";
-            break;
-        case 'bieudo':
-            if (isset($_POST['btnsub'])) {
-                $listthongke = loadall_thongke();
-            }
+        // case 'donhang': {
+        //         $listbill = loadall_bill();
+        //         include 'donhang/listdh.php';
+        //         break;
+        //     }
+        // case 'ttdh': {
+        //         if (isset($_GET['iddh']) && ($_GET['iddh'])) {
+        //             $bill = loadone_bill($_GET['iddh']);
+        //         }
+        //         if (isset($_POST['btnsub'])) {
+        //             $iddh = $_POST['iddh'];
+        //             $ttdh = $_POST['ttdh'];
+        //             thaydoi_trangthai($ttdh, $iddh);
+        //             header('location: ?act=donhang');
+        //         }
+        //         include 'donhang/ttdh.php';
+        //         break;
+        //     }
+        // case 'thongke':
+        //     $listthongke = loadall_thongke();
+        //     include "thongke.php";
+        //     break;
+        // case 'bieudo':
+        //     if (isset($_POST['btnsub'])) {
+        //         $listthongke = loadall_thongke();
+        //     }
 
-            if (isset($_POST['tk_donhang'])) {
-                $listthongke_thang = load_thongke_sanpham_donhang();
-            }
+        //     if (isset($_POST['tk_donhang'])) {
+        //         $listthongke_thang = load_thongke_sanpham_donhang();
+        //     }
 
-            if (isset($_GET['type']) && $_GET['type'] == 'month') {
-                $listthongke_thang = load_thongke_sanpham_donhang();
-            } else if (isset($_GET['type']) && $_GET['type'] == 'week') {
-                $listthongke_tuan = load_thongke_sanpham_donhang_tuan();
-            } else if (isset($_GET['type']) && $_GET['type'] == 'day') {
-                $listthongke_ngay = load_thongke_sanpham_donhang_ngay();
-                //                                 echo "<pre>";
-                // print_r($listthongke_ngay);
-                // die;
-            } else {
-                $listthongke_thang = load_thongke_sanpham_donhang();
-            }
+        //     if (isset($_GET['type']) && $_GET['type'] == 'month') {
+        //         $listthongke_thang = load_thongke_sanpham_donhang();
+        //     } else if (isset($_GET['type']) && $_GET['type'] == 'week') {
+        //         $listthongke_tuan = load_thongke_sanpham_donhang_tuan();
+        //     } else if (isset($_GET['type']) && $_GET['type'] == 'day') {
+        //         $listthongke_ngay = load_thongke_sanpham_donhang_ngay();
+        //         //                                 echo "<pre>";
+        //         // print_r($listthongke_ngay);
+        //         // die;
+        //     } else {
+        //         $listthongke_thang = load_thongke_sanpham_donhang();
+        //     }
 
-            include "bieudo.php";
-            break;
-        default:
-            include "home.php";
-            break;
+        //     include "bieudo.php";
+        //     break;
+        // default:
+        //     include "home.php";
+        //     break;
     }
 } else {
     include "home.php";

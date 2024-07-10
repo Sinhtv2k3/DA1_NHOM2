@@ -1,7 +1,7 @@
 <div class="row box">
     <div class="boxtrai">
-        <div class="loai logoam tren">
-            <img src="../image/logovip.jpg" width="150px" height="150px" alt="">
+        <div class="loai ">
+            <img src="../upload/images (1).png" width="100%" height="100%" alt="">
         </div>
         <div class="loai hieuung">
             <ul>
@@ -11,7 +11,7 @@
                 <li><a href="?act=dsbl">Bình Luận</a></li>
                 <li><a href="?act=donhang">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Quay về Trang Chủ</a></li>
+                <li><a href="../index.php">Trang chủ</a></li>
             </ul>
         </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="bang">
             <form id="myForm" action="index.php?act=addsp" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
 
-                <div class="maloai">
+                <div class="maloai ">
                     Danh Mục SP<br>
                     <select name="iddm" id="">
                         <?php
