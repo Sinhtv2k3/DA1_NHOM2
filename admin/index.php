@@ -36,7 +36,25 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             include "danhmuc/add.php";
             break;
 
-
+            case 'suadm':
+                if (isset($_POST['capnhat'])) {
+                    $id_dm = $_POST['id_dm'];
+                    $tenloai = $_POST['tenloai'];
+                    $trangthai = $_POST['trangthai'];
+            
+                    update_danhmuc($id_dm, $tenloai, $trangthai);
+            
+                    $thongbao = "Cập nhật thành công";
+                    header("location: index.php?act=listdm");
+                    exit();
+                } elseif (isset($_GET['id'])) {
+                    $id_dm = $_GET['id'];
+                    $danhmuc = loadone_danhmuc($id_dm);
+                }
+                include "danhmuc/update.php";
+                break;
+            
+            
             // case 'suadm':
             //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
             //         $dm = loadone_danhmuc($_GET['id']);

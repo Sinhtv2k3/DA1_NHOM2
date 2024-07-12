@@ -65,3 +65,15 @@ function delete_danhmuc($id)
     pdo_execute($sql, array(':id' => $id));
 }
 
+function loadone_danhmuc($id)
+{
+    $sql = "SELECT * FROM danhmuc WHERE id_dm = :id";
+    $dm = pdo_query_one($sql, array(':id' => $id));
+    return $dm;
+}
+
+function update_danhmuc($id, $tendm, $trangthai)
+{
+    $sql = "UPDATE danhmuc SET ten_dm = :tendm, trangthai = :trangthai WHERE id_dm = :id";
+    pdo_execute($sql, array(':id' => $id, ':tendm' => $tendm, ':trangthai' => $trangthai));
+}

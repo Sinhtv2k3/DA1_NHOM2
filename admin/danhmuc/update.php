@@ -1,18 +1,7 @@
-<?php
-if (is_array($dm)) {
-    extract($dm);
-}
-$hinhanhpath = "../upload/" . $img;
-if (is_file($hinhanhpath)) {
-    $hinh = "<img src='" . $hinhanhpath . "' height='200'>";
-} else {
-    $hinh = "no photo";
-}
-?>
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">
-            <img src="../image/logovip.jpg" width="150px" height="150px" alt="">
+            <img src="../upload/images (1).png" width="100%" height="100%" alt="">
         </div>
         <div class="loai hieuung">
             <ul>
@@ -25,46 +14,34 @@ if (is_file($hinhanhpath)) {
                 <li><a href="../index.php">Quay về Trang Chủ</a></li>
             </ul>
         </div>
-
     </div>
     <div class="boxphai">
         <div class="tieudeb">
-            <h2>Sửa Danh Mục</h2>
+            <h2>Cập Nhật Danh Mục</h2>
         </div>
         <div class="bang">
-            <form id="myForm" action="index.php?act=updatedm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <form name="myForm" action="index.php?act=suadm" method="post">
                 <div class="maloai">
-                    Mã Loại<br>
-                    <input type="text" name="maloai" disabled>
-                </div>
-                <div class="maloai">
-                    Hình<br>
-                    <input type="file" name="hinh">
-                    <?= $hinh ?>
+                    <input type="hidden" name="id_dm" value="<?php echo $danhmuc['id_dm']; ?>">
+                    Mã Loại: <?php echo $danhmuc['id_dm']; ?>
                 </div>
                 <div class="maloai">
                     Tên Loại<br>
-                    <input type="text" name="tenloai" value="<?php if (isset($name) && ($name != "")) echo $name; ?>">
+                    <input type="text" name="tenloai" value="<?php echo $danhmuc['ten_dm']; ?>">
+                </div>
+                <div class="maloai">
+                    Trạng Thái<br>
+                    <select name="trangthai">
+                        <option value="0" <?php if ($danhmuc['trangthai'] == '0') echo 'selected'; ?>>Mở</option>
+                        <option value="1" <?php if ($danhmuc['trangthai'] == '1') echo 'selected'; ?>>Đóng</option>
+                    </select>
                 </div>
                 <div class="nut">
-                    <input type="hidden" name="id" value="<?php if (isset($id) && ($id > 0)) echo $id; ?>">
                     <input type="submit" name="capnhat" value="Cập Nhật">
                     <a href="index.php?act=listdm"><input type="button" value="Danh sách"></a>
                 </div>
-                <?php
-                if (isset($thongbao) && ($thongbao != "")) echo $thongbao;
-                ?>
+                <?php if (isset($thongbao) && ($thongbao != "")) echo $thongbao; ?>
             </form>
         </div>
     </div>
 </div>
-
-<script>
-    function validateForm() {
-    var tenloai = document.forms["myForm"]["tenloai"].value;
-    if (tenloai == "") {
-        alert("Vui lòng nhập tên loại");
-        return false;
-    }
-    }
-</script>
