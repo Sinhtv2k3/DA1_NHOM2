@@ -1,7 +1,7 @@
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">
-            <img src="../image/logovip.jpg" width="150px" height="150px" alt="">
+        <img src="../upload/images (1).png" width="100%" height="100%" alt="">
         </div>
         <div class="loai hieuung">
         <ul>

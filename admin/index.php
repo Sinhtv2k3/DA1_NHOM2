@@ -18,11 +18,11 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 $hinh = $_FILES['hinh']['name'];
                 // uploaad file lên thư mục upload lấy tren w3sc
                 $target_dir = "../upload/";
-                $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                } else {
-                }
-                insert_danhmuc($tenloai, $hinh);
+                // $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+                // if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                // } else {
+                // }
+                // insert_danhmuc($tenloai, $hinh);
                 $thongbao = "Thêm thành công";
                 // header("location:?act=listdm");
             }
