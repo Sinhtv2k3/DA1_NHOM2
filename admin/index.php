@@ -11,7 +11,7 @@ include "header.php";
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
-         /*-----------------------------CRUD DANH MỤC------------------------- */
+            /*-----------------------------CRUD DANH MỤC------------------------- */
         case 'listdm':
             $listdanhmuc = loadall_danhmuc();
             include "danhmuc/list.php";
@@ -37,24 +37,24 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             include "danhmuc/add.php";
             break;
 
-            case 'suadm':
-                if (isset($_POST['capnhat'])) {
-                    $id_dm = $_POST['id_dm'];
-                    $tenloai = $_POST['tenloai'];
-                    $trangthai = $_POST['trangthai'];
-            
-                    update_danhmuc($id_dm, $tenloai, $trangthai);
-            
-                    $thongbao = "Cập nhật thành công";
-                    header("location: index.php?act=listdm");
-                    exit();
-                } elseif (isset($_GET['id'])) {
-                    $id_dm = $_GET['id'];
-                    $danhmuc = loadone_danhmuc($id_dm);
-                }
-                include "danhmuc/update.php";
-                break;
-            
+        case 'suadm':
+            if (isset($_POST['capnhat'])) {
+                $id_dm = $_POST['id_dm'];
+                $tenloai = $_POST['tenloai'];
+                $trangthai = $_POST['trangthai'];
+
+                update_danhmuc($id_dm, $tenloai, $trangthai);
+
+                $thongbao = "Cập nhật thành công";
+                header("location: index.php?act=listdm");
+                exit();
+            } elseif (isset($_GET['id'])) {
+                $id_dm = $_GET['id'];
+                $danhmuc = loadone_danhmuc($id_dm);
+            }
+            include "danhmuc/update.php";
+            break;
+
             /*-----------------------------CRUD DANH MỤC------------------------- */
 
             /*-----------------------------CRUD SẢN PHẨM------------------------- */

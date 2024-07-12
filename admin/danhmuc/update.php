@@ -32,8 +32,8 @@
                 <div class="maloai">
                     Trạng Thái<br>
                     <select name="trangthai">
-                        <option value="0" <?php if ($danhmuc['trangthai'] == '0') echo 'selected'; ?>>Mở</option>
-                        <option value="1" <?php if ($danhmuc['trangthai'] == '1') echo 'selected'; ?>>Đóng</option>
+                        <option value="0" <?php if ($danhmuc['trangthai'] == '0') echo 'selected'; ?>>Đang hoạt động</option>
+                        <option value="1" <?php if ($danhmuc['trangthai'] == '1') echo 'selected'; ?>>Không hoạt động</option>
                     </select>
                 </div>
                 <div class="nut">
