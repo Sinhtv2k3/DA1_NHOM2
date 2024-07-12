@@ -21,44 +21,27 @@
             <h2>List Danh Mục</h2>
         </div>
         <div class="bangl">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>MÃ LOẠI</th>
-                    <th>Hình</th>
-                    <th>TÊN LOẠI</th>
-                    <th>Tùy Chọn</th>
-                </tr>
-                <!-- -----------cách 1------------- -->
-                <!-- <?php
-                        foreach ($listdanhmuc as $danhmuc) {
-                            extract($danhmuc);
-                            $suadm = "index.php?act=suadm&id=" . $id;
-                            $xoadm = "index.php?act=xoadm&id=" . $id;
-                            echo '<tr>
-                            <td><input type="checkbox" name="" id=""></td>
-                            <td>' . $id . '</td>
-                            <td>' . $name . '</td>
-                            <td><a href="' . $suadm . '"><input type="button" value="Sửa"></a> <a href="' . $xoadm . '"><input type="button" value="Xóa"></a></td>
-                        </tr>';
-                        }
-                        ?> -->
-                <!-- -----------cách 2------------- -->
-                <?php foreach ($listdanhmuc as $danhmuc) : ?>
-                    <tr>
-                        <td><input type="checkbox" name="" id=""></td>
-                        <td><?= $danhmuc['id'] ?></td>
-                        <td><img style="width: 85px; height:100px;" src="<?= '../upload/' . $danhmuc['img'] ?>" alt=""></td>
-                        <td><?= $danhmuc['name'] ?></td>
-                        <td>
-                            <a href="index.php?act=suadm&id=<?= $danhmuc['id'] ?>" class="confim">Sửa</a>
-                            <a onclick="return confirm('bạn có chắc xóa không ?')" href="index.php?act=xoadm&id=<?= $danhmuc['id'] ?>" class="confim">Xóa</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
+    <table>
+        <tr>
+            <th></th>
+            <th>MÃ LOẠI</th>
+            <th>TÊN LOẠI</th>
+            <th>Tùy Chọn</th>
+        </tr>
+        <?php foreach ($listdanhmuc as $danhmuc) : ?>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><?= $danhmuc['id_dm'] ?></td>
+                <td><?= $danhmuc['ten_dm'] ?></td>
+                <td>
+                    <a href="index.php?act=suadm&id=<?= $danhmuc['id_dm'] ?>" class="confim">Sửa</a>
+                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')" href="index.php?act=xoadm&id_dm=<?= $danhmuc['id_dm'] ?>" class="confim">Xóa</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
 
-        </div>
         <div class="nut">
             <a href="index.php?act=adddm"><input type="button" name="themmoi" value="Thêm Mới"></a>
         </div>

@@ -11,57 +11,62 @@ include "header.php";
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
-
-        case 'adddm':
-            if (isset($_POST['themmoi'])) {
-                $tenloai = $_POST['tenloai'];
-                $hinh = $_FILES['hinh']['name'];
-                // uploaad file lên thư mục upload lấy tren w3sc
-                $target_dir = "../upload/";
-                // $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-                // if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                // } else {
-                // }
-                // insert_danhmuc($tenloai, $hinh);
-                $thongbao = "Thêm thành công";
-                // header("location:?act=listdm");
-            }
-            include "danhmuc/add.php";
-            break;
-
-        case 'suadm':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $dm = loadone_danhmuc($_GET['id']);
-            }
-            include "danhmuc/update.php";
-            break;
-        case 'updatedm':
-            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                $tenloai = $_POST['tenloai'];
-                $id = $_POST['id'];
-                $hinh = $_FILES['hinh']['name'];
-                $target_dir = "../upload/";
-                $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                } else {
-                }
-                update_danhmuc($id, $tenloai, $hinh);
-                $thongbao = "Cập nhật thành công";
-            }
-            $listdanhmuc = loadall_danhmuc();
-            include "danhmuc/list.php";
-            break;
         case 'listdm':
             $listdanhmuc = loadall_danhmuc();
             include "danhmuc/list.php";
             break;
         case 'xoadm':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                delete_danhmuc($_GET['id']);
+            if (isset($_GET['id_dm']) && $_GET['id_dm'] > 0) {
+                delete_danhmuc($_GET['id_dm']);
             }
             $listdanhmuc = loadall_danhmuc();
             include "danhmuc/list.php";
             break;
+        case 'adddm':
+            if (isset($_POST['themmoi'])) {
+                $tenloai = $_POST['tenloai'];
+                $trangthai = '0';
+
+                insert_danhmuc(NULL, $tenloai, $trangthai);
+
+                $thongbao = "Thêm thành công";
+                header("location:index.php?act=listdm");
+                exit();
+            }
+            include "danhmuc/add.php";
+            break;
+
+
+            // case 'suadm':
+            //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            //         $dm = loadone_danhmuc($_GET['id']);
+            //     }
+            //     include "danhmuc/update.php";
+            //     break;
+            // case 'updatedm':
+            //     if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+            //         $tenloai = $_POST['tenloai'];
+            //         $id = $_POST['id'];
+            //         $hinh = $_FILES['hinh']['name'];
+            //         $target_dir = "../upload/";
+            //         $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+            //         if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+            //         } else {
+            //         }
+            //         update_danhmuc($id, $tenloai, $hinh);
+            //         $thongbao = "Cập nhật thành công";
+            //     }
+            //     $listdanhmuc = loadall_danhmuc();
+            //     include "danhmuc/list.php";
+            //     break;
+
+            // case 'xoadm':
+            //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            //         delete_danhmuc($_GET['id']);
+            //     }
+            //     $listdanhmuc = loadall_danhmuc();
+            //     include "danhmuc/list.php";
+            //     break;
             /*-----------------------------hết phàn của admin------------------------- */
         case 'addsp':
             if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
@@ -133,80 +138,80 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             //     $listsanpham = loadall_sanpham();
             //     include "sanpham/list.php";
             //     break;
-        // case 'taikhoan':
-        //     $listtaikhoan = loadall_taikhoan();
-        //     include "taikhoan/list.php";
-        //     break;
-        // case 'xoatk':
-        //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-        //         delete_taikhoan($_GET['id']);
-        //     }
-        //     $listtaikhoan = loadall_taikhoan();
-        //     include "taikhoan/list.php";
-        //     break;
-        // case 'dsbl':
-        //     $listbinhluan = loadall_binhluan(0);
-        //     include "binhluan/binhluan.php";
-        //     break;
-        // case 'xoabl':
-        //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-        //         delete_binhluan($_GET['id']);
-        //     }
-        //     $listbinhluan = loadall_binhluan(0);
-        //     include "binhluan/binhluan.php";
-        //     break;
+            // case 'taikhoan':
+            //     $listtaikhoan = loadall_taikhoan();
+            //     include "taikhoan/list.php";
+            //     break;
+            // case 'xoatk':
+            //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            //         delete_taikhoan($_GET['id']);
+            //     }
+            //     $listtaikhoan = loadall_taikhoan();
+            //     include "taikhoan/list.php";
+            //     break;
+            // case 'dsbl':
+            //     $listbinhluan = loadall_binhluan(0);
+            //     include "binhluan/binhluan.php";
+            //     break;
+            // case 'xoabl':
+            //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            //         delete_binhluan($_GET['id']);
+            //     }
+            //     $listbinhluan = loadall_binhluan(0);
+            //     include "binhluan/binhluan.php";
+            //     break;
 
 
 
-        // case 'donhang': {
-        //         $listbill = loadall_bill();
-        //         include 'donhang/listdh.php';
-        //         break;
-        //     }
-        // case 'ttdh': {
-        //         if (isset($_GET['iddh']) && ($_GET['iddh'])) {
-        //             $bill = loadone_bill($_GET['iddh']);
-        //         }
-        //         if (isset($_POST['btnsub'])) {
-        //             $iddh = $_POST['iddh'];
-        //             $ttdh = $_POST['ttdh'];
-        //             thaydoi_trangthai($ttdh, $iddh);
-        //             header('location: ?act=donhang');
-        //         }
-        //         include 'donhang/ttdh.php';
-        //         break;
-        //     }
-        // case 'thongke':
-        //     $listthongke = loadall_thongke();
-        //     include "thongke.php";
-        //     break;
-        // case 'bieudo':
-        //     if (isset($_POST['btnsub'])) {
-        //         $listthongke = loadall_thongke();
-        //     }
+            // case 'donhang': {
+            //         $listbill = loadall_bill();
+            //         include 'donhang/listdh.php';
+            //         break;
+            //     }
+            // case 'ttdh': {
+            //         if (isset($_GET['iddh']) && ($_GET['iddh'])) {
+            //             $bill = loadone_bill($_GET['iddh']);
+            //         }
+            //         if (isset($_POST['btnsub'])) {
+            //             $iddh = $_POST['iddh'];
+            //             $ttdh = $_POST['ttdh'];
+            //             thaydoi_trangthai($ttdh, $iddh);
+            //             header('location: ?act=donhang');
+            //         }
+            //         include 'donhang/ttdh.php';
+            //         break;
+            //     }
+            // case 'thongke':
+            //     $listthongke = loadall_thongke();
+            //     include "thongke.php";
+            //     break;
+            // case 'bieudo':
+            //     if (isset($_POST['btnsub'])) {
+            //         $listthongke = loadall_thongke();
+            //     }
 
-        //     if (isset($_POST['tk_donhang'])) {
-        //         $listthongke_thang = load_thongke_sanpham_donhang();
-        //     }
+            //     if (isset($_POST['tk_donhang'])) {
+            //         $listthongke_thang = load_thongke_sanpham_donhang();
+            //     }
 
-        //     if (isset($_GET['type']) && $_GET['type'] == 'month') {
-        //         $listthongke_thang = load_thongke_sanpham_donhang();
-        //     } else if (isset($_GET['type']) && $_GET['type'] == 'week') {
-        //         $listthongke_tuan = load_thongke_sanpham_donhang_tuan();
-        //     } else if (isset($_GET['type']) && $_GET['type'] == 'day') {
-        //         $listthongke_ngay = load_thongke_sanpham_donhang_ngay();
-        //         //                                 echo "<pre>";
-        //         // print_r($listthongke_ngay);
-        //         // die;
-        //     } else {
-        //         $listthongke_thang = load_thongke_sanpham_donhang();
-        //     }
+            //     if (isset($_GET['type']) && $_GET['type'] == 'month') {
+            //         $listthongke_thang = load_thongke_sanpham_donhang();
+            //     } else if (isset($_GET['type']) && $_GET['type'] == 'week') {
+            //         $listthongke_tuan = load_thongke_sanpham_donhang_tuan();
+            //     } else if (isset($_GET['type']) && $_GET['type'] == 'day') {
+            //         $listthongke_ngay = load_thongke_sanpham_donhang_ngay();
+            //         //                                 echo "<pre>";
+            //         // print_r($listthongke_ngay);
+            //         // die;
+            //     } else {
+            //         $listthongke_thang = load_thongke_sanpham_donhang();
+            //     }
 
-        //     include "bieudo.php";
-        //     break;
-        // default:
-        //     include "home.php";
-        //     break;
+            //     include "bieudo.php";
+            //     break;
+            // default:
+            //     include "home.php";
+            //     break;
     }
 } else {
     include "home.php";
