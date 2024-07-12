@@ -11,6 +11,7 @@ include "header.php";
 if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+         /*-----------------------------CRUD DANH MỤC------------------------- */
         case 'listdm':
             $listdanhmuc = loadall_danhmuc();
             include "danhmuc/list.php";
@@ -54,38 +55,9 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 include "danhmuc/update.php";
                 break;
             
-            
-            // case 'suadm':
-            //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-            //         $dm = loadone_danhmuc($_GET['id']);
-            //     }
-            //     include "danhmuc/update.php";
-            //     break;
-            // case 'updatedm':
-            //     if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-            //         $tenloai = $_POST['tenloai'];
-            //         $id = $_POST['id'];
-            //         $hinh = $_FILES['hinh']['name'];
-            //         $target_dir = "../upload/";
-            //         $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-            //         if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-            //         } else {
-            //         }
-            //         update_danhmuc($id, $tenloai, $hinh);
-            //         $thongbao = "Cập nhật thành công";
-            //     }
-            //     $listdanhmuc = loadall_danhmuc();
-            //     include "danhmuc/list.php";
-            //     break;
+            /*-----------------------------CRUD DANH MỤC------------------------- */
 
-            // case 'xoadm':
-            //     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-            //         delete_danhmuc($_GET['id']);
-            //     }
-            //     $listdanhmuc = loadall_danhmuc();
-            //     include "danhmuc/list.php";
-            //     break;
-            /*-----------------------------hết phàn của admin------------------------- */
+            /*-----------------------------CRUD SẢN PHẨM------------------------- */
         case 'addsp':
             if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
                 $iddm = $_POST['iddm'];
