@@ -23,14 +23,12 @@
         <div class="bangl">
     <table>
         <tr>
-            <th></th>
             <th>MÃ LOẠI</th>
             <th>TÊN LOẠI</th>
             <th>Tùy Chọn</th>
         </tr>
         <?php foreach ($listdanhmuc as $danhmuc) : ?>
             <tr>
-                <td><input type="checkbox" name="" id=""></td>
                 <td><?= $danhmuc['id_dm'] ?></td>
                 <td><?= $danhmuc['ten_dm'] ?></td>
                 <td>
