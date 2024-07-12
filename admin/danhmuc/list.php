@@ -11,14 +11,14 @@
                 <li><a href="?act=dsbl">Bình Luận</a></li>
                 <li><a href="?act=donhang">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Quay về Trang Chủ</a></li>
+                <li><a href="../index.php">Trang Chủ</a></li>
             </ul>
         </div>
 
     </div>
     <div class="boxphai">
         <div class="tieudeb">
-            <h2>List Danh Mục</h2>
+            <h2>DANH SÁCH DANH MỤC</h2>
         </div>
         <div class="bangl">
             <table>

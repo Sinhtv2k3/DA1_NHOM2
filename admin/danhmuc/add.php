@@ -11,7 +11,7 @@
                 <li><a href="?act=dsbl">Bình Luận</a></li>
                 <li><a href="?act=donhang">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Quay về Trang Chủ</a></li>
+                <li><a href="../index.php">Trang Chủ</a></li>
             </ul>
         </div>
     </div>
@@ -22,23 +22,18 @@
         <div class="bang">
             <form name="myForm" action="index.php?act=adddm" method="post" onsubmit="return validateForm()">
                 <div class="maloai">
-                    <!-- Mã Loại (có thể để trống vì sẽ tự động tăng) -->
-                    <!-- <input type="text" name="maloai" placeholder="Tự động tăng" disabled> -->
-                </div>
-                <!-- <div class="maloai">
-                    Hình
-                    <input type="file" name="hinh">
-                </div> -->
-                <div class="maloai">
                     <!-- Tên Loại -->
                     <label for="tenloai">Tên Loại</label>
-                    <input type="text" id="tenloai" name="tenloai" required>
+                    <input type="text" id="tenloai" name="tenloai" class="tenloai" required>
                 </div>
                 <div class="nut">
                     <!-- Nút Thêm Mới -->
-                    <input type="submit" name="themmoi" value="Thêm Mới">
+                    <input type="submit" name="themmoi" value="Thêm Mới" class="small-button">
+
                     <!-- Liên kết đến Danh sách danh mục -->
-                    <a href="index.php?act=listdm"><input type="button" value="Danh sách"></a>
+                    <a href="index.php?act=listdm">
+                        <input type="button" value="Danh sách" class="small-button">
+                    </a>
                 </div>
                 <!-- Hiển thị thông báo -->
                 <?php if (isset($thongbao) && ($thongbao != "")) echo $thongbao; ?>
@@ -46,19 +41,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-function validateForm() {
-    var tenloai = document.forms["myForm"]["tenloai"].value;
-    var hinh = document.forms["myForm"]["hinh"].value;
-    if (tenloai == "") {
-        alert("Vui lòng nhập tên loại");
-        return false;
-    }
-    if (hinh == "") {
-        alert("Vui lòng thêm ảnh loại hàng");
-        return false;
-    }
-}
-</script>

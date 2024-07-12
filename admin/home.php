@@ -5,7 +5,7 @@
         </div>
         <div class="loai hieuung">
             <ul>
-                <li><a href="?act=adddm">Danh Mục</a></li>
+                <li><a href="?act=listdm">Danh Mục</a></li>
                 <li><a href="?act=addsp">Sản Phẩm</a></li>
                 <li><a href="?act=taikhoan">Tài Khoản</a></li>
                 <li><a href="?act=dsbl">Bình Luận</a></li>

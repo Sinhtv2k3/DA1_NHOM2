@@ -22,7 +22,7 @@ if (is_file($hinhanhpath)) {
                 <li><a href="?act=dsbl">Bình Luận</a></li>
                 <li><a href="?act=donhang">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Quay về Trang Chủ</a></li>
+                <li><a href="../index.php">Trang Chủ</a></li>
             </ul>
         </div>
 

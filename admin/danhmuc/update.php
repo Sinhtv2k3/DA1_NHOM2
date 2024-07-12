@@ -11,7 +11,7 @@
                 <li><a href="?act=dsbl">Bình Luận</a></li>
                 <li><a href="?act=donhang">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Quay về Trang Chủ</a></li>
+                <li><a href="../index.php">Trang Chủ</a></li>
             </ul>
         </div>
     </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="maloai">
                     Tên Loại<br>
-                    <input type="text" name="tenloai" value="<?php echo $danhmuc['ten_dm']; ?>">
+                    <input type="text" name="tenloai" class="tenloai" value="<?php echo $danhmuc['ten_dm']; ?>">
                 </div>
                 <div class="maloai">
                     Trạng Thái<br>
