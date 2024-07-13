@@ -1,10 +1,13 @@
+<div class="tieudead">
+    <h1>Quản Lý Sản Phẩm</h1>
+</div>
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">
-        <img src="../upload/images (1).png" width="100%" height="100%" alt="">
+            <img src="../upload/images (1).png" width="100%" height="100%" alt="">
         </div>
         <div class="loai hieuung">
-        <ul>
+            <ul>
                 <li><a href="?act=adddm">Danh Mục</a></li>
                 <li><a href="?act=addsp">Sản Phẩm</a></li>
                 <li><a href="?act=taikhoan">Tài Khoản</a></li>
@@ -14,61 +17,81 @@
                 <li><a href="../index.php">Trang Chủ</a></li>
             </ul>
         </div>
-        <form class="odm" action="index.php?act=listsp" method= "post">
-                    <input class="tima" type="text" name="kyw" placeholder="Tìm kiếm.....">
-                    <select class="odmm" name="iddm">
-                        <option value="0" selected>Tất cả</option>
-                <?php 
-                  foreach ($listdanhmuc as $danhmuc) {
-                    extract($danhmuc);
-                    echo '<option value="'.$id.'">'.$name.'</option>';
-                  }
-                ?>
-              </select>
-              <input type="submit" name="listok" value="GO">
-                </form>
-
     </div>
     <div class="boxphai">
         <div class="tieudeb">
-            <h2>List Danh Mục</h2>
+            <h2>Danh Sách Sản Phẩm</h2>
+            <form action="index.php?act=listsp" method="post">
+                <input type="text" name="kyw" placeholder="Tìm kiếm sản phẩm">
+                <select name="id_dm">
+                    <option value="0">Tất cả danh mục</option>
+                    <?php foreach ($listdanhmuc as $danhmuc) { ?>
+                        <option value="<?php echo $danhmuc['id_dm']; ?>"><?php echo $danhmuc['ten_dm']; ?></option>
+                    <?php } ?>
+                </select>
+                <button type="submit">Tìm kiếm</button>
+                <a href="index.php?act=addsp">
+                    <input type="button" value=" Thêm sản phẩm" class="small-button">
+                </a>
+            </form>
         </div>
-        
-        <div class="bangl">
+        <div class="bang">
             <table>
-                <tr>
-                    
-                    <th>MÃ SP</th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Giá</th>
-                    <th>Hình</th>
-                    <!-- <th>View</th> -->
-                    <th>ID SP</th>
-                    <th>Tùy Chọn</th> 
-                </tr>
-                <?php foreach ($listsanpham as $sanpham) : ?>
+                <thead>
                     <tr>
-                        <td><?= $sanpham['id'] ?></td>
-                        <td><?= $sanpham['name'] ?></td>
-                        <td>$ <?= $sanpham['price'] ?></td>
-                        <td>
-                            <img style="width: 85px; height:100px;" src="<?= '../upload/'.$sanpham['img'] ?>" alt="">
-                        </td>
-                        <!-- <td><?= $sanpham['luotxem'] ?></td> -->
-                        <td><?= $sanpham['iddm'] ?></td>
-                        <td><a href="index.php?act=updatesp&id=<?=$sanpham['id']?>" class="confim">Sửa</a>
-                        <a onclick="return confirm('bạn có chắc xóa không ?')" href="index.php?act=xoasp&id=<?=$sanpham['id']?>" class="confim">Xóa</a> </td>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Ảnh</th>
+                        <th>Mô tả</th>
+                        <th>Danh mục</th>
+                        <th>Số lượng</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
                     </tr>
-                <?php endforeach; ?>
-
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($listsanpham) && count($listsanpham) > 0) {
+                        foreach ($listsanpham as $sanpham) {
+                            $trangthai = $sanpham['trangthai'] == '0' ? 'Còn hàng' : 'Hết hàng';
+                            ?>
+                            <tr>
+                                <td><?= $sanpham['id_sp'] ?></td>
+                                <td><?= $sanpham['ten_sp'] ?></td>
+                                <td><?= $sanpham['gia'] ?></td>
+                                <td><img src="../upload/<?= $sanpham['anh'] ?>" width="100"></td>
+                                <td><?= $sanpham['mo_ta'] ?></td>
+                                <td><?= $sanpham['id_dm'] ?></td>
+                                <td><?= $sanpham['so_luong'] ?></td>
+                                <td><?= $trangthai ?></td>
+                                <td>
+                                    <a href="index.php?act=suasp&id=<?= $sanpham['id_sp'] ?>" class="confim">Sửa</a>
+                                    <a href="#" onclick="return confirmDelete(<?= htmlspecialchars($sanpham['id_sp']) ?>)" class="confim">Xóa</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                        <tr>
+                            <td colspan="9">Không có sản phẩm nào</td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
             </table>
-
-            
         </div>
-        <div class="nut">
-                <a href="index.php?act=addsp"><input type="button" name="themmoi" value="Thêm Mới"></a>    
-            </div>
-
     </div>
-
 </div>
+
+<script>
+function confirmDelete(id) {
+    var result = confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');
+    if (result) {
+        window.location.href = 'index.php?act=xoasp&id=' + id;
+    }
+    return false; 
+}
+</script>
