@@ -257,37 +257,73 @@
 
 
 // Lấy tất cả sản phẩm
+
+// Thêm sản phẩm mới
+function insert_sanpham($ten_sp, $gia, $anh, $so_luong, $mo_ta, $id_dm, $trangthai = 0)
+{
+    $sql = "INSERT INTO sanpham (ten_sp, gia, anh, so_luong, mo_ta, id_dm, trangthai) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql_args = array($ten_sp, $gia, $anh, $so_luong, $mo_ta, $id_dm, $trangthai);
+    pdo_execute($sql, $sql_args);
+}
+
+
+// Tải danh sách sản phẩm
 function loadall_sanpham($kyw = '', $id_dm = 0) {
-    $sql = "SELECT * FROM sanpham WHERE 1";
+    $sql = "SELECT sp.*, dm.ten_dm 
+            FROM sanpham sp 
+            LEFT JOIN danhmuc dm ON sp.id_dm = dm.id_dm 
+            WHERE 1";
+
+    $params = array();
+    
     if ($kyw != '') {
-        $sql .= " AND ten_sp LIKE ?";
-    }
-    if ($id_dm > 0) {
-        $sql .= " AND id_dm = ?";
-    }
-    $sql .= " ORDER BY id_sp DESC"; // Sắp xếp theo ID giảm dần
-    $params = [];
-    if ($kyw != '') {
+        $sql .= " AND sp.ten_sp LIKE ?";
         $params[] = "%$kyw%";
     }
     if ($id_dm > 0) {
+        $sql .= " AND sp.id_dm = ?";
         $params[] = $id_dm;
     }
-    return pdo_query($sql, ...$params);
+
+    $sql .= " AND dm.trangthai = 0";
+    
+    $sql .= " ORDER BY sp.id_sp DESC"; 
+    return pdo_query($sql, $params);
 }
 
 // Xóa sản phẩm
 function delete_sanpham($id) {
     $sql = "DELETE FROM sanpham WHERE id_sp = ?";
-    pdo_execute($sql, $id);
+    pdo_execute($sql, array($id));
 }
-    
 
-// // Cập nhật sản phẩm
-// function update_sanpham($id, $id_dm, $tensp, $giasp, $mota, $hinh, $giamgia) {
-//     $sql = "UPDATE sanpham SET id_dm = ?, ten_sp = ?, gia = ?, mo_ta = ?, anh = ?, giamgia = ? WHERE id_sp = ?";
-//     pdo_execute($sql, $iddm, $tensp, $giasp, $mota, $hinh, $giamgia, $id);
-// }
+// Tải tên danh mục
+function load_ten_dm($iddm)
+{
+    if ($iddm > 0) {
+        $sql = "SELECT * FROM danhmuc WHERE id_dm = ? AND trangthai = 0";
+        $dm = pdo_query_one($sql, array($iddm));
+        return $dm ? $dm['ten_dm'] : "";
+    } else {
+        return "";
+    }
+}
+
+
+// Lấy thông tin chi tiết sản phẩm
+function loadone_sanpham($id){
+    $sql = "SELECT * FROM sanpham WHERE id_sp = ?";
+    return pdo_query_one($sql, array($id));
+}
+
+// Cập nhật thông tin sản phẩm
+function update_sanpham($id, $id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $trangthai) {
+    $sql = "UPDATE sanpham SET id_dm = ?, ten_sp = ?, gia = ?, mo_ta = ?, anh = ?, so_luong = ?, trangthai = ? WHERE id_sp = ?";
+    pdo_execute($sql, array($id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $trangthai, $id));
+}
+
+
 
 // // Lấy sản phẩm theo ID
 // function loadone_sanpham($id) {

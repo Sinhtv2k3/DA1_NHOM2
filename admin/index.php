@@ -74,47 +74,110 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             $listsanpham = loadall_sanpham("", 0);
             include "sanpham/list.php";
             break;
-        case 'addsp':
-            if (isset($_POST['themmoi'])) {
-                $tensp = isset($_POST['ten_sp']) ? $_POST['ten_sp'] : '';
-                $giasp = isset($_POST['gia']) ? $_POST['gia'] : '';
-                $hinh = isset($_FILES['anh']['name']) ? $_FILES['anh']['name'] : '';
-                $mota = isset($_POST['mo_ta']) ? $_POST['mo_ta'] : '';
-                $id_dm = isset($_POST['id_dm']) ? $_POST['id_dm'] : '';
-                $so_luong = isset($_POST['so_luong']) ? $_POST['so_luong'] : 0; // Thêm số lượng
-                $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : '';
-
-                $target_dir = "../upload/";
-                $target_file = $target_dir . basename($_FILES["anh"]["name"]);
-
-                if ($_FILES['anh']['error'] === UPLOAD_ERR_OK) {
-                    if (move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file)) {
-                        insert_sanpham($tensp, $giasp, $hinh, $mota, $id_dm, $so_luong, $trangthai); // Cập nhật hàm insert
-                        $thongbao = "Thêm thành công";
-                    } else {
-                        $thongbao = "Lỗi khi upload file";
+            case 'addsp':
+                if (isset($_POST['themmoi'])) {
+                    // Xử lý khi nhấn nút "Thêm Mới"
+                    $tensp = isset($_POST['ten_sp']) ? $_POST['ten_sp'] : '';
+                    $giasp = isset($_POST['gia']) ? $_POST['gia'] : '';
+                    $hinh = isset($_FILES['anh']['name']) ? $_FILES['anh']['name'] : '';
+                    $mota = isset($_POST['mo_ta']) ? $_POST['mo_ta'] : '';
+                    $id_dm = isset($_POST['id_dm']) ? $_POST['id_dm'] : '';
+                    $so_luong = isset($_POST['so_luong']) ? $_POST['so_luong'] : 0;
+                    $trangthai = 0; // Thiết lập trạng thái mặc định là 0
+            
+                    // Kiểm tra và xử lý lỗi khi id_dm không hợp lệ
+                    if (!load_ten_dm($id_dm)) {
+                        $thongbao = "Lỗi: Danh mục sản phẩm không hợp lệ.";
+                        include "error.php"; // Hoặc hiển thị lỗi ra màn hình
+                        break;
                     }
-                } else {
-                    $thongbao = "Lỗi khi upload file: " . $_FILES['anh']['error'];
+            
+                    $target_dir = "../upload/";
+                    $target_file = $target_dir . basename($_FILES["anh"]["name"]);
+            
+                    // Kiểm tra lỗi và xử lý tệp tải lên
+                    if ($_FILES['anh']['error'] === UPLOAD_ERR_OK) {
+                        if (move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file)) {
+                            // Thêm sản phẩm vào cơ sở dữ liệu sau khi tệp tải lên thành công
+                            insert_sanpham($tensp, $giasp, $hinh, $so_luong, $mota, $id_dm, $trangthai);
+                            $thongbao = "Thêm sản phẩm thành công";
+                        } else {
+                            $thongbao = "Lỗi khi upload file";
+                        }
+                    } else {
+                        $thongbao = "Lỗi khi upload file: " . $_FILES['anh']['error'];
+                    }
+            
+                    // Cập nhật danh sách danh mục và sản phẩm sau khi thêm mới
+                    $listdanhmuc = loadall_danhmuc();
+                    $listsanpham = loadall_sanpham("", 0);
+            
+                    // Hiển thị thông báo và danh sách sản phẩm
+                    include "sanpham/list.php";
+                    break;
                 }
-
-                // Lấy danh sách sản phẩm mới nhất để hiển thị
+            
+                // Hiển thị form thêm sản phẩm ban đầu
                 $listdanhmuc = loadall_danhmuc();
-                $listsanpham = loadall_sanpham("", 0); // Lấy toàn bộ sản phẩm
-
-                // Hiển thị thông báo và danh sách sản phẩm
-                include "sanpham/list.php";
+                include "sanpham/add.php";
                 break;
-            }
-            $listdanhmuc = loadall_danhmuc();
-            include "sanpham/add.php";
-            break;
+            
 
-
-
-            error_log(print_r($listsanpham, true));
-
-            // Các phần mã khác của bạn ở đây
+                case 'suasp':
+                    if (isset($_GET['id']) && $_GET['id'] > 0) {
+                        $sanpham = loadone_sanpham($_GET['id']);
+                    }
+                    $listdanhmuc = loadall_danhmuc();
+                    include "sanpham/update.php";
+                    break;
+            
+                case 'updatesp':
+                    if (isset($_POST['capnhat'])) {
+                        $id = isset($_POST['id']) ? $_POST['id'] : null;
+                        $iddm = isset($_POST['iddm']) ? $_POST['iddm'] : null;
+                        $tensp = isset($_POST['tensp']) ? $_POST['tensp'] : '';
+                        $giasp = isset($_POST['giasp']) ? $_POST['giasp'] : '';
+                        $mota = isset($_POST['mota']) ? $_POST['mota'] : '';
+                        $hinh = isset($_FILES['hinh']['name']) ? $_FILES['hinh']['name'] : '';
+                        $soluong = isset($_POST['soluong']) ? $_POST['soluong'] : '';
+                        $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : 0; 
+                        
+                        // Xử lý upload hình ảnh nếu có
+                        if ($_FILES['hinh']['error'] === UPLOAD_ERR_OK) {
+                            $target_dir = "../upload/";
+                            $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+                            if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                                // Nếu upload hình thành công, cập nhật thông tin sản phẩm
+                                update_sanpham($id, $iddm, $tensp, $giasp, $mota, basename($_FILES["hinh"]["name"]), $soluong, $trangthai);
+                                $thongbao = "Cập nhật thành công";
+                            } else {
+                                $thongbao = "Lỗi khi upload file";
+                            }
+                        } else {
+                            // Nếu không có file được upload, chỉ cập nhật thông tin khác mà không thay đổi hình ảnh
+                            update_sanpham($id, $iddm, $tensp, $giasp, $mota, $sanpham['anh'], $soluong, $trangthai);
+                            $thongbao = "Cập nhật thành công";
+                        }
+                        
+                        // Chuyển hướng về trang danh sách sản phẩm sau khi cập nhật thành công
+                        header("Location: index.php?act=listsp");
+                        exit();
+                    }
+                    break;
+            
+                case 'listsp':
+                    $listsanpham = loadall_sanpham();
+                    include "sanpham/list.php";
+                    break;
+            
+                // Các case khác...
+            
+                default:
+                    include "home.php";
+                    break;
+            
+            
+            
 
             // Xử lý các hành động
             // switch ($act) {

@@ -1,6 +1,4 @@
-<div class="tieudead">
-    <h1>Quản Lý Sản Phẩm</h1>
-</div>
+
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">
@@ -31,7 +29,7 @@
                 </select>
                 <button type="submit">Tìm kiếm</button>
                 <a href="index.php?act=addsp">
-                    <input type="button" value=" Thêm sản phẩm" class="small-button">
+                    <input type="button" value=" Thêm mới" class="small-button">
                 </a>
             </form>
         </div>
@@ -62,7 +60,7 @@
                                 <td><?= $sanpham['gia'] ?></td>
                                 <td><img src="../upload/<?= $sanpham['anh'] ?>" width="100"></td>
                                 <td><?= $sanpham['mo_ta'] ?></td>
-                                <td><?= $sanpham['id_dm'] ?></td>
+                                <td><?= $sanpham['ten_dm'] ?></td>
                                 <td><?= $sanpham['so_luong'] ?></td>
                                 <td><?= $trangthai ?></td>
                                 <td>
