@@ -1,38 +1,44 @@
-    <marquee style="margin-left:115px; " width="80%"  behavior="scroll"  bgcolor="#eaeffe" direction="">
-        <strong style="font-size: 30px; color: black;">F-Shop thương hiệu di động số 1</strong>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Slide</title>
+    <link rel="stylesheet" href="../css/trangchu.css">
+</head>
+<body>
+    <marquee style="margin-left:115px; " width="80%" behavior="scroll" bgcolor="#eaeffe" direction="">
+        <strong style="font-size: 30px; color: black;">F-Shop thương hiệu quần áo số 1</strong>
     </marquee>
-<div  class="row banner">
-    <div class="banner_left">
-        <img src="image/anh2.jpg" width="250px" height="400px" alt="">
+    <div class="row banner">
+       
+        <div class="slide">
+    
+            <img src="upload/anh3.jpg/anh1.jpg/anh2.jpg" alt="" width="1300px" height="400px" id="slideImage">
+        </div>
+        
     </div>
-    <div class="slide">
-        <img src="image/anh1.jpg" alt="" width="770px" height="400pc" id="anh">
-    </div>
-    <div class="banner_right">
-        <img src="image/anh3.jpg" width="250px" height="400px" alt="">
-    </div>
-</div>
-<script>
-    var anh = ['image/anh1.jpg', 'image/anh2.jpg', 'image/anh4.jpg'];
-    var i = 0;
 
-    function onShow() {
-        if (i > 2) i = 0;
-        document.getElementById('anh').src = anh[i];
-        i++;
-    }
+    <script>
+        var anh = ['upload/anh1.jpg', 'upload/anh3.jpg', 'upload/anh2.jpg'];
+        var i = 0;
+        var id;
 
-    function play() {
-        id = setInterval(function(
+        function onShow() {
+            if (i >= anh.length) i = 0;
+            document.getElementById('slideImage').src = anh[i];
+            i++;
+        }
 
-        ) {
-            onShow();
-        }, 3000)
-    }
-    play();
+        function play() {
+            id = setInterval(onShow, 2000);
+        }
 
-    function stop() {
-        clearInterval(id)
-    }
+        function stop() {
+            clearInterval(id);
+        }
 
-</script>
+        play(); // Bắt đầu chạy slide ngay khi trang được tải
+    </script>
+</body>
+</html>
