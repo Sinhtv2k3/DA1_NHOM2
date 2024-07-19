@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký</title>
     <style>
-    body {
+      body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     display: flex;
@@ -18,41 +17,47 @@
 
 .form-wrapper {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    box-sizing: border-box;
 }
 
 .form-wrapper h2 {
     margin-bottom: 20px;
     text-align: center;
+    font-size: 24px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .form-group input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 4px;
     background-color: #007bff;
     color: #fff;
     font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -61,7 +66,8 @@ button:hover {
 
 p {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    font-size: 14px;
 }
 
 p a {
@@ -72,12 +78,12 @@ p a {
 p a:hover {
     text-decoration: underline;
 }
-</style>
+    </style>
 </head>
 <body>
-    <div class="form-wrapper">
+<div class="form-wrapper">
         <h2>Đăng Ký</h2>
-        <form action="process_register.php" method="POST">
+        <form action="http://localhost/DA1_NHOM2-master/index.php?act=dangki" method="POST">
             <div class="form-group">
                 <label for="username">Tên người dùng:</label>
                 <input type="text" id="username" name="username" required>
@@ -94,10 +100,13 @@ p a:hover {
                 <label for="confirm_password">Xác nhận mật khẩu:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
-            <button type="submit">Đăng Ký</button>
+            <button type="submit" name="dangki">Đăng Ký</button>
         </form>
-        <p><a href="login.php">Đã có tài khoản? Đăng nhập</a></p>
+        <p><a href="http://localhost/DA1_NHOM2-master/index.php?act=login">Đã có tài khoản? Đăng nhập</a></p>
     </div>
+    <?php
+   
+
+    ?>
 </body>
 </html>
-
