@@ -291,7 +291,13 @@ function loadall_sanpham($kyw = '', $id_dm = 0) {
     $sql .= " ORDER BY sp.id_sp DESC"; 
     return pdo_query($sql, $params);
 }
-
+//Load sản phẩm ra trang chủ
+function loadall_sanpham_home($kyw = '', $iddm = 0)
+{
+    $sql = "SELECT * FROM sanpham WHERE 1 order by id_sp desc limit 0,9";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
 // Xóa sản phẩm
 function delete_sanpham($id) {
     $sql = "DELETE FROM sanpham WHERE id_sp = ?";
@@ -322,7 +328,6 @@ function update_sanpham($id, $id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $tr
     $sql = "UPDATE sanpham SET id_dm = ?, ten_sp = ?, gia = ?, mo_ta = ?, anh = ?, so_luong = ?, trangthai = ? WHERE id_sp = ?";
     pdo_execute($sql, array($id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $trangthai, $id));
 }
-
 
 
 // // Lấy sản phẩm theo ID

@@ -1,35 +1,41 @@
 <?php
 // function loadall_taikhoan()
 // {
-//     $sql = "select * from taikhoan order by id desc";
-//     $listtaikhoan = pdo_query($sql);
-//     return $listtaikhoan;
+//     $sql = "SELECT * FROM taikhoan ORDER BY id_tk DESC";
+//     return pdo_query($sql);
 // }
-// function checkuser($user, $pass)
+
+// function checkuser($ten, $mk)
 // {
-//     $sql = "select * from taikhoan where user = '$user' and pass = '$pass'";
-//     $result = pdo_query_one($sql);
-//     return $result;
+//     $sql = "SELECT * FROM taikhoan WHERE ten = ? AND mk = ?";
+//     return pdo_query_one($sql, array($ten, $mk));
 // }
-// function delete_taikhoan($id)
+
+// function delete_taikhoan($id_tk)
 // {
-//     $sql = "delete from taikhoan where id=" . $id;
-//     pdo_execute($sql);
+//     $sql = "DELETE FROM taikhoan WHERE id_tk = ?";
+//     pdo_execute($sql, array($id_tk));
 // }
-// function insert_taikhoan($user, $email, $pass)
+
+// function insert_taikhoan($ten, $mk, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role)
 // {
-//     $sql = "insert into taikhoan(user,email,pass) values('$user','$email','$pass')";
-//     pdo_execute($sql);
+//     $sql = "INSERT INTO taikhoan(ten, mk, sdt, email, dia_chi, ten_nd, trangthai, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+//     pdo_execute($sql, array($ten, $mk, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role));
 // }
-// function update_taikhoan($id, $user, $pass, $email, $address, $tel)
+
+// function update_taikhoan($id_tk, $ten, $mk, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role)
 // {
-//     $sql = "update taikhoan set user='" . $user . "',pass='" . $pass . "',email='" . $email . "',address='" . $address . "',tel='" . $tel . "' where id=" . $id;
-//     pdo_execute($sql);
+//     $sql = "UPDATE taikhoan SET ten = ?, mk = ?, sdt = ?, email = ?, dia_chi = ?, ten_nd = ?, trangthai = ?, role = ? WHERE id_tk = ?";
+//     pdo_execute($sql, array($ten, $mk, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role, $id_tk));
 // }
 
 // function checkemail($email)
 // {
-//     $sql = "select * from taikhoan where email='" . $email . "'";
-//     $sp = pdo_query_one($sql);
-//     return $sp;
+//     $sql = "SELECT * FROM taikhoan WHERE email = ?";
+//     return pdo_query_one($sql, array($email));
 // }
+
+ function insert_taikhoan($ten, $mk, $email) {
+        $sql = "INSERT INTO taikhoan (ten, mk, email ) VALUES ( ?, ?, ?)";
+        pdo_execute($sql, $ten,$mk,$email);
+    }

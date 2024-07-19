@@ -1,0 +1,572 @@
+/* Reset CSS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Phần Chung */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(249, 249, 249);
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input, button {
+    border: none;
+    outline: none;
+}
+
+/* Header */
+.page_header {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 0, 0.912);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page_header .search {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    background-color: rgba(8, 80, 235, 0.912);
+    border-radius: 40px;
+    padding: 0 15px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="search"] {
+    height: 40px;
+    width: 100%;
+    border-radius: 40px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="search"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.headers {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home, .gopy, .lienhe, .gioithieu, .xemtham {
+    width: 17%;
+}
+
+.headers a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 0, 0.912);
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.headers a:hover {
+    background-color: #e0e000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.headers a:active {
+    background-color: #d4d400;
+    transform: scale(0.98);
+}
+/* Banner */
+.banner {
+    width: 100%;
+    display: flex;
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    padding: 10px 0; /* Khoảng cách trên và dưới */
+    box-sizing: border-box;
+     
+}
+
+.banner_left, .banner_right {
+    width: 20%;
+    height: auto; /* Điều chỉnh chiều cao tự động */
+    padding: 100px; /* Khoảng cách bên trong */
+}
+
+.slide {
+    width: 60%;
+    height: auto; /* Điều chỉnh chiều cao tự động */
+    padding: 10px; /* Khoảng cách bên trong */
+}
+
+
+/* Danh Mục */
+.danhmuctop10 {
+    height: 200px;
+    background-color: rgb(254, 249, 228);
+    margin: 10px 0;
+}
+
+.topdm {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Khoảng cách giữa các mục */
+}
+
+.tieude {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tieude strong {
+    color: rgb(7, 67, 119);
+    padding-left: 5px;
+}
+
+.danhmuctop10 a {
+    color: black;
+}
+
+.danhmuctop10 strong {
+    color: rgb(7, 67, 119);
+}
+
+.danhmuctop10 p {
+    color: #f2472b;
+}
+
+.danhmuctop10:hover {
+    box-shadow: 5px 5px 5px 5px pink;
+    font-weight: 1000;
+}
+
+/* Chi Tiết Danh Mục */
+.chitiet {
+    flex: 1 1 calc(25% - 20px); /* Đảm bảo 4 cột, trừ khoảng cách giữa các mục */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.anh_dm img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Cắt ảnh để phù hợp với kích thước */
+}
+
+.ten_dm a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Hiệu ứng khi di chuột qua danh mục */
+.chitiet:hover {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Sản Phẩm Nổi Bật */
+.top10sp {
+    margin-top: 50px;
+}
+
+.top10sps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+}
+
+.col-3 {
+    flex: 1 1 calc(25% - 20px); /* Đảm bảo 4 cột cho sản phẩm nổi bật */
+    box-sizing: border-box;
+}
+
+/* Thẻ sản phẩm */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.2em;
+}
+
+/* Hiệu ứng nút trên thẻ sản phẩm */
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-warning a {
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-warning:active {
+    background-color: #d39e00;
+    transform: scale(0.98);
+}
+
+/* Phần Bài Viết Đáng Chú Ý */
+.post {
+    margin-top: 50px;
+}
+
+.postall {
+    display: flex;
+    justify-content: space-between;
+}
+
+.baipost_1, .baipost_2 {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.baipost_1 img, .baipost_2 img {
+    width: 100%;
+    height: auto;
+}
+
+.baipost_1 p, .baipost_2 p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.baipost_1 a, .baipost_2 a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Admin */
+.tieudead {
+    height: 115px;
+    background-color: aqua;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 20px;
+}
+
+.box {
+    width: 100%;
+}
+
+.boxtrai, .boxphai {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxtrai {
+    width: 20%;
+    border-radius: 20px 20px;
+    background-color: rgba(40, 40, 40, 0.869);
+}
+
+.boxphai {
+    margin-left: 10px;
+    width: 100%;
+    background-color: white;
+}
+
+.tieudeb {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(74, 74, 255);
+    text-align: center;
+    padding-top: 1px;
+}
+
+.bangl table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #999;
+}
+
+.bangl table th {
+    padding: 20px;
+    background-color: #ccc;
+}
+
+.bangl table td {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+}
+
+.bang input[type="text"], .nut input[type="submit"], .nut input[type="button"] {
+    height: 40px;
+}
+
+.nut input[type="submit"], .nut input[type="button"] {
+    width: 100px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.nut input[type="submit"]:hover, .nut input[type="button"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nut input[type="submit"]:active, .nut input[type="button"]:active {
+    background-color: #004085;
+    transform: scale(0.98);
+}
+
+/* Danh Mục Sản Phẩm */
+.divcat {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cat {
+    width: 20%;
+    height: 150px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 150px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.cat:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .headers {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home, .gopy, .lienhe, .gioithieu, .xemtham {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .top10sps {
+        flex-direction: column;
+    }
+
+    .col-3 {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page_header .search {
+        width: 80%;
+    }
+}
+/* Danh Mục Sản Phẩm */
+.danhmuctop10 {
+    padding: 20px;
+    background-color: rgb(254, 249, 228);
+    margin: 20px 0;
+}
+
+.tieude {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tieude strong {
+    color: rgb(7, 67, 119);
+}
+
+.topdm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chitiet {
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.anh_dm img {
+    width: 100%;
+    height: 135px;
+    border-radius: 8px;
+}
+
+.ten_dm a {
+    color: #333;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.chitiet:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .topdm {
+        flex-direction: column;
+    }
+
+    .chitiet {
+        flex: 1 1 100%;
+    }
+}
+
+
+
+
+/* styles.css */
+
+/* Căn chỉnh toàn bộ trang */
+
+
+/* Container cho form */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tiêu đề của form */
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Các nhóm input */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Nhãn input */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input field */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Nút submit */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Hiệu ứng khi hover qua nút submit */
+button:hover {
+    background-color: #0056b3;
+}
+.form-container {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.form-container.show {
+    display: block;
+}
+
+.form-toggle {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-container a {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
