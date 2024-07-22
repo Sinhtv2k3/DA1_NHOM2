@@ -83,7 +83,7 @@ p a:hover {
 <body>
 <div class="form-wrapper">
         <h2>Đăng Ký</h2>
-        <form action="http://localhost/DA1_NHOM2-master/index.php?act=dangki" method="POST">
+        <form action="http://localhost/DA1_NHOM2-master/index.php" method="POST">
             <div class="form-group">
                 <label for="username">Tên người dùng:</label>
                 <input type="text" id="username" name="username" required>
@@ -104,9 +104,6 @@ p a:hover {
         </form>
         <p><a href="http://localhost/DA1_NHOM2-master/index.php?act=login">Đã có tài khoản? Đăng nhập</a></p>
     </div>
-    <?php
-   
-
-    ?>
+    
 </body>
 </html>

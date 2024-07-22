@@ -276,15 +276,31 @@ function loadall_sanpham($kyw = '', $id_dm = 0) {
     return pdo_query($sql, ...$params);
 }
 
+
+
+function loadall_sanpham_top5()
+{
+    $sql = "select * from sanpham where 1 order by lx desc limit 0,5";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
+
+
+function loadall_sanpham_home()
+{
+    $sql = "select * from sanpham where 1 order by id_sp desc limit 0,9";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
 // Xóa sản phẩm
 function delete_sanpham($id) {
     $sql = "DELETE FROM sanpham WHERE id_sp = ?";
     pdo_execute($sql, $id);
 }
-function loadall_sanpham_home() {
-    $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT 10"; // Hoặc thay đổi limit tùy theo yêu cầu
-    return pdo_query($sql);
-}
+// function loadall_sanpham_home() {
+//     $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT 10"; // Hoặc thay đổi limit tùy theo yêu cầu
+//     return pdo_query($sql);
+// }
     
 
 // // Cập nhật sản phẩm

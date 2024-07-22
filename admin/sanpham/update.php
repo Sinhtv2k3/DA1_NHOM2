@@ -2,17 +2,17 @@
 if (is_array($sanpham)) {
     extract($sanpham);
 }
-$hinhanhpath = "../upload/" . $img;
+$hinhanhpath = "../upload/" . $anh;
 if (is_file($hinhanhpath)) {
     $hinh = "<img src='" . $hinhanhpath . "' height='200'>";
 } else {
-    $hinh = "no photo";
+    $hinh = "Không có ảnh";
 }
 ?>
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">
-            <img src="../image/logovip.jpg" width="150px" height="150px" alt="">
+            <img src="../upload/images (1).png" width="100%" height="100%" alt="">
         </div>
         <div class="loai hieuung">
             <ul>
@@ -25,7 +25,6 @@ if (is_file($hinhanhpath)) {
                 <li><a href="../index.php">Trang Chủ</a></li>
             </ul>
         </div>
-
     </div>
     <div class="boxphai">
         <div class="tieudeb">
@@ -35,33 +34,24 @@ if (is_file($hinhanhpath)) {
             <form id="myForm" action="?act=updatesp" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
 
                 <div class="maloai">
-                    <!-- <select class="dmsuasp" name="iddm">
-                        <option value="0" selected>Tất cả</option>
-                        <?php
-                        foreach ($listdanhmuc as $danhmuc) {
-                            extract($danhmuc);
-                            if ($iddm == $id) $s = "selected";/*nếu iddm(là id vừa extract ra bằng với id trong bảng thì mới cho selected) */
-                            else $s = "";
-                            echo '<option value="' . $id . '"' . $s . '>' . $name . '</option>';
-                        }
-                        ?>
-                    </select> -->
-                    <!--phan tren loi len dung cach duoi vi name sp no lay cua thg danh muc  -->
-                    <label for="danhmuc">Danh Mục:</label>
-                    <select name="iddm">
+                    <label for="iddm">Danh Mục:</label>
+                    <select name="iddm" id="iddm">
                         <?php foreach ($listdanhmuc as $danhmuc) : ?>
-                            <option value="<?= $danhmuc['id'] ?>" <?= $sanpham['iddm'] == $danhmuc['id'] ? "selected" : "" ?>><?= $danhmuc['name'] ?></option>
+                            <?php if ($danhmuc['trangthai'] == 0) : ?>
+                                <option value="<?= $danhmuc['id_dm'] ?>" <?= $id_dm == $danhmuc['id_dm'] ? "selected" : "" ?>><?= $danhmuc['ten_dm'] ?></option>
+                            <?php endif ?>
                         <?php endforeach ?>
                     </select>
                 </div>
 
+
                 <div class="maloai">
                     Tên sản phẩm<br>
-                    <input type="text" name="tensp" value="<?= $sanpham['name'] ?>">
+                    <input type="text" name="tensp" value="<?= $ten_sp ?>">
                 </div>
                 <div class="maloai">
                     Giá<br>
-                    <input type="text" name="giasp" value="<?= $price ?>">
+                    <input type="text" name="giasp" value="<?= $gia ?>">
                 </div>
                 <div class="maloai">
                     Hình<br>
@@ -69,18 +59,23 @@ if (is_file($hinhanhpath)) {
                     <?= $hinh ?>
                 </div>
                 <div class="maloai">
-                    Mô Tả<br>
-                    <textarea name="mote" id="" cols="30" rows="10"><?= $mota ?></textarea>
+                    Số lượng<br>
+                    <input type="text" name="soluong" value="<?= $so_luong ?>">
                 </div>
-
                 <div class="maloai">
-                    Giảm Giá<br>
-                    <input type="input" name="giamgia" value="<?php echo $sanpham['giam_gia'] ?>">
+                    Trạng thái<br>
+                    <select name="trangthai" id="trangthai">
+                        <option value="0" <?= $trangthai == 0 ? 'selected' : '' ?>>Còn hàng</option>
+                        <option value="1" <?= $trangthai == 1 ? 'selected' : '' ?>>Hết hàng</option>
+                    </select>
+                </div>
+                <div class="maloai">
+                    Mô Tả<br>
+                    <textarea name="mota" id="mota" cols="30" rows="10"><?= $mo_ta ?></textarea>
                 </div>
 
-                <!-- hidden dùng để cập nhật hết lại thông tin vô lại bảng  -->
                 <div class="nut">
-                    <input type="hidden" name="id" value="<?= $sanpham['id'] ?>">
+                    <input type="hidden" name="id" value="<?= $id_sp ?>">
                     <input type="submit" name="capnhat" value="Cập Nhật">
                     <a href="index.php?act=listsp"><input type="button" value="Danh sách"></a>
                 </div>
@@ -89,29 +84,30 @@ if (is_file($hinhanhpath)) {
                 ?>
             </form>
         </div>
-
     </div>
-
 </div>
+
 <script>
     function validateForm() {
-        var tensp = document.getElementsByName("tensp")[0].value;
-        var giasp = document.getElementsByName("giasp")[0].value;
-        var mote = document.getElementsByName("mote")[0].value;
+        var tensp = document.getElementsByName("tensp")[0].value.trim();
+        var giasp = document.getElementsByName("giasp")[0].value.trim();
+        var mote = document.getElementById("mote").value.trim();
 
-        if (tensp == "") {
+        if (tensp === "") {
             alert("Vui lòng nhập tên sản phẩm");
             return false;
         }
 
-        if (giasp == "") {
+        if (giasp === "") {
             alert("Vui lòng nhập giá sản phẩm");
             return false;
         }
 
-        if (mote == "") {
+        if (mote === "") {
             alert("Vui lòng mô tả sản phẩm");
             return false;
         }
+
+        return true;
     }
 </script>

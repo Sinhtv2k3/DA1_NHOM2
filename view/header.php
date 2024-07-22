@@ -44,46 +44,47 @@
 }
 
     </style>
-    <script >document.addEventListener('DOMContentLoaded', () => {
-    // Dữ liệu sản phẩm giả lập
-    const products = [
-        { id: 1, name: 'Sản phẩm 1 ', price: '100,000 VND', image: 'upload/anh4.jpg' },
-        { id: 2, name: 'Sản phẩm 2', price: '200,000 VND', image: 'upload/anh4.jpg' },
-        { id: 3, name: 'Sản phẩm 3', price: '300,000 VND', image: 'upload/anh4.jpg' },
-        { id: 4, name: 'Sản phẩm 4', price: '400,000 VND', image: 'upload/anh4.jpg' },
-        { id: 5, name: 'Sản phẩm 5', price: '500,000 VND', image: 'upload/anh4.jpg' },
-        { id: 6, name: 'Sản phẩm 6', price: '600,000 VND', image: 'upload/anh4.jpg' },
-        { id: 7, name: 'Sản phẩm 7', price: '700,000 VND', image: 'upload/anh4.jpg' },
-        { id: 8, name: 'Sản phẩm 8', price: '800,000 VND', image: 'upload/anh4.jpg' },
-        { id: 9, name: 'Sản phẩm 9', price: '900,000 VND', image: 'upload/anh4.jpg' },
-    ];
+   <script > 
+//         // document.addEventListener('DOMContentLoaded', () => { -->
+//     // Dữ liệu sản phẩm giả lập
+//     const products = [
+//         { id: 1, name: 'Sản phẩm 1 ', price: '100,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 2, name: 'Sản phẩm 2', price: '200,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 3, name: 'Sản phẩm 3', price: '300,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 4, name: 'Sản phẩm 4', price: '400,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 5, name: 'Sản phẩm 5', price: '500,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 6, name: 'Sản phẩm 6', price: '600,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 7, name: 'Sản phẩm 7', price: '700,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 8, name: 'Sản phẩm 8', price: '800,000 VND', image: 'upload/anh4.jpg' },
+//         { id: 9, name: 'Sản phẩm 9', price: '900,000 VND', image: 'upload/anh4.jpg' },
+//     ];
 
-    // Tải sản phẩm vào trang
-    const productsContainer = document.querySelector('#all-products .products');
+//     // Tải sản phẩm vào trang
+//     const productsContainer = document.querySelector('#all-products .products');
 
-    products.slice(0, 9).forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
+//     products.slice(0, 9).forEach(product => {
+//         const productCard = document.createElement('div');
+//         productCard.className = 'product-card';
 
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>${product.price}</p>
-            <button onclick="viewDetails(${product.id})">Xem Chi Tiết</button>
-            <button onclick="addToCart(${product.id})">Thêm vào Giỏ</button>
-        `;
+//         productCard.innerHTML = `
+//             <img src="${product.image}" alt="${product.name}">
+//             <h3>${product.name}</h3>
+//             <p>${product.price}</p>
+//             <button onclick="viewDetails(${product.id})">Xem Chi Tiết</button>
+//             <button onclick="addToCart(${product.id})">Thêm vào Giỏ</button>
+//         `;
 
-        productsContainer.appendChild(productCard);
-    });
-});
+//         productsContainer.appendChild(productCard);
+//     });
+// });
 
-function viewDetails(productId) {
-    alert(`Xem chi tiết sản phẩm có ID: ${productId}`);
-}
+// function viewDetails(productId) {
+//     alert(`Xem chi tiết sản phẩm có ID: ${productId}`);
+// }
 
-function addToCart(productId) {
-    alert(`Thêm sản phẩm có ID: ${productId} vào giỏ hàng`);
-}
+// function addToCart(productId) {
+//     alert(`Thêm sản phẩm có ID: ${productId} vào giỏ hàng`);
+// } -->
 
 
 
@@ -135,7 +136,9 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="hh">
             <div class="row menudm">
                 <div class="col-1">
-                    <a href="index.html"><img src="logo.png" alt="Logo"></a>
+                <a href="index.php">
+    <img src="upload/images (1).png" style="width: 30px; height: 30px;">
+</a>
                 </div>
                 <div class="col-2"><a href="index.php">Home</a></div>
                 <div class="col-2"><a href="#">Sản Phẩm</a></div>

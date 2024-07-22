@@ -85,7 +85,27 @@ p a:hover {
 <body>
     <div class="form-wrapper">
         <h2>Đăng Nhập</h2>
-        <form action="process_login.php" method="POST">
+
+        <?php 
+        if(isset($_SESSION['username'])){
+            extract($_SESSION['username']);
+        ?>
+         <div class="form-group">
+                xin chao <br>
+                <?$ten?>
+            </div>
+            <div class="form-group">
+            <p><a href="edit.php">Quên mật khẩu</a></p>   
+            <p><a href="edit.php">Cập nhật tài khoản</a></p>
+            <p><a href="admin/index.php">Đăng nhập Admin</a></p>
+            <p><a href="dangki.php">Thoát</a></p>  
+            </div>
+        <?php
+        }else{
+
+        }
+        ?>
+        <form action="http://localhost/DA1_NHOM2-master/index.php?=act-login.php" method="POST">
             <div class="form-group">
                 <label for="username">Tên người dùng:</label>
                 <input type="text" id="username" name="username" required>

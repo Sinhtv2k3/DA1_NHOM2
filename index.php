@@ -10,9 +10,9 @@ include_once "gobal.php"; // Đảm bảo đúng tên file
 
 if (!isset($_SESSION['giohang'])) $_SESSION['giohang'] = [];
 
-// $spnew = loadall_sanpham_home();
+$spnew = loadall_sanpham_home();
 // $listdanhmuc = loadall_danhmuc_home();
-// $sptop = loadall_sanpham_top5();
+$sptop = loadall_sanpham_top5();
 // $listdanhmuc = loadall_danhmuc();
 $listdanhmuc = loadall_danhmuc();
 $top10 = loadall_sanpham_home(); // Hoặc hàm phù hợp khác để lấy sản phẩm nổi bật
@@ -33,19 +33,37 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'dangki':
            
                         if (isset($_POST['dangki']) ) {
-                            echo "hello";
+                            
                             $ten = $_POST['username'];
                             $email = $_POST['email'];
                             $mk = $_POST['password'];
                             insert_taikhoan($ten, $email, $mk);
-                            header('location: ?act=login');
+        
                         }
                         include "view/login/dangki.php"; 
                         break;
-    
+         case 'login':
+           
+                        if (isset($_POST['login']) ) {
+                           
+                            $ten = $_POST['username'];
+                            $mk = $_POST['password'];
+                            $checkusername = checkusername($ten,$mk);   
+                            if(is_array($checkusername)){
+                                $_SESSION['username']=$checkusername;
+                                // $thongbao="bạn đã đăng nhập thành công";
+                                header('Location: index.php');
+                           
+                            }else{
+                                $thongbao="tai khoan khong ton tai";
+                            }                    
+                        }
+                        include "view/login/login.php"; 
+                        break;
+        
              
         default:
-            include "view/home.php";
+            include "home.php";
             break;
 } 
 
