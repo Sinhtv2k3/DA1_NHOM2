@@ -9,9 +9,13 @@ function pdo_get_connection() {
     $username = 'root';
     $password = '';
 
-    $conn = new PDO($dburl, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
+    try {
+        $conn = new PDO($dburl, $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch (PDOException $e) {
+        die("Connection failed: " . $e->getMessage());
+    }
 }
 
 /**
@@ -98,7 +102,7 @@ function pdo_query_one($sql, $sql_args = array()) {
  * Thực thi câu lệnh SQL SELECT và trả về một giá trị đầu tiên của bản ghi đầu tiên
  * @param string $sql câu lệnh SQL SELECT
  * @param array $sql_args mảng giá trị cung cấp cho các tham số của $sql
- * @return giá trị đầu tiên của bản ghi đầu tiên
+ * @return mixed giá trị đầu tiên của bản ghi đầu tiên
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_value($sql, $sql_args = array()) {
@@ -114,4 +118,15 @@ function pdo_query_value($sql, $sql_args = array()) {
         unset($conn);
     }
 }
+
+/**
+ * Lấy thông tin sản phẩm theo ID
+ * @param int $productId ID sản phẩm
+ * @return array mảng chứa thông tin sản phẩm
+ */
+function getProductById($productId) {
+    $sql = "SELECT * FROM sanpham WHERE id_sp = ?";
+    return pdo_query_one($sql, [$productId]);
+}
+
 ?>

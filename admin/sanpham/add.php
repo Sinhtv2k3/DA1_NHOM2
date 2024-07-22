@@ -5,11 +5,11 @@
         </div>
         <div class="loai hieuung">
             <ul>
-                <li><a href="?act=adddm">Danh Mục</a></li>
+            <li><a href="?act=listdm">Danh Mục</a></li>
                 <li><a href="?act=addsp">Sản Phẩm</a></li>
                 <li><a href="?act=taikhoan">Tài Khoản</a></li>
                 <li><a href="?act=dsbl">Bình Luận</a></li>
-                <li><a href="?act=donhang">Đơn Hàng</a></li>
+                <li><a href="?act=listdh">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
                 <li><a href="../index.php">Trang chủ</a></li>
             </ul>

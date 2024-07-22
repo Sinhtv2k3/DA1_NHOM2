@@ -107,3 +107,91 @@
 //   $sql = "update `bill` set `bill_status`='5' where `id` = $iddh";
 //   pdo_execute($sql);
 // }
+
+function insert_dh($sl, $tong_tien, $ten_nd, $sdt, $dia_chi, $email, $trangthai = 0, $id_hd, $id_sp)
+{
+    $sql = "INSERT INTO cthoadon (sl, tong_tien, ten_nd, sdt, dia_chi, email, trangthai, id_hd, id_sp) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql_args = array($sl, $tong_tien, $ten_nd, $sdt, $dia_chi, $email, $trangthai, $id_hd, $id_sp);
+    pdo_execute($sql, $sql_args);
+}
+
+function loadall_donhang()
+{
+    $sql = "SELECT c.id_ct_hd, c.sl, c.tong_tien, c.ten_nd, c.sdt, c.dia_chi, c.email, c.trangthai, c.id_hd, c.id_sp, h.ngay AS ngay_dat
+            FROM cthoadon c
+            JOIN hoadon h ON c.id_hd = h.id_hd
+            ORDER BY c.id_hd DESC";
+    $listdonhang = pdo_query($sql);
+    return $listdonhang;
+}
+
+
+function view_donhang($id)
+{
+    $sql = "SELECT * FROM cthoadon WHERE id_hd = :id";
+    $donhang = pdo_query_one($sql, array(':id' => $id));
+    return $donhang;
+}
+
+function cancel_donhang($id)
+{
+    $sql = "DELETE FROM cthoadon WHERE id_hd = :id";
+    pdo_execute($sql, array(':id' => $id));
+}
+
+// Hàm thêm sản phẩm vào giỏ hàng
+function addToCart($productId, $quantity = 1)
+{
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    if (isset($_SESSION['cart'][$productId])) {
+        $_SESSION['cart'][$productId]['quantity'] += $quantity;
+    } else {
+        $product = getProductById($productId);
+        $_SESSION['cart'][$productId] = [
+            'id' => $product['id_sp'],
+            'name' => $product['ten_sp'],
+            'price' => $product['gia'],
+            'image' => $product['anh'],
+            'quantity' => $quantity
+        ];
+    }
+}
+
+// Hàm xóa sản phẩm khỏi giỏ hàng
+function removeFromCart($productId)
+{
+    if (isset($_SESSION['cart'][$productId])) {
+        unset($_SESSION['cart'][$productId]);
+    }
+}
+
+function addOrder($name, $email, $phone, $address, $cart)
+{
+    $conn = new mysqli('localhost', 'root', '', 'da1');
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Thêm thông tin hóa đơn vào bảng hoadon
+    $stmt = $conn->prepare("INSERT INTO hoadon (ngay, ten, email, dia_chi, sdt, id_tk) VALUES (NOW(), ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssi", $name, $email, $address, $phone, $_SESSION['user_id']);
+    $stmt->execute();
+
+    $id_hd = $stmt->insert_id; // Lấy ID hóa đơn mới tạo
+
+    // Thêm thông tin chi tiết hóa đơn vào bảng cthoadon
+    foreach ($cart as $item) {
+        $stmt = $conn->prepare("INSERT INTO cthoadon (sl, tong_tien, ten_nd, sdt, dia_chi, email, trangthai, id_hd, id_sp) VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?)");
+        $ttien = $item[3] * $item[4];
+        $stmt->bind_param("iissssii", $item[4], $ttien, $name, $phone, $address, $email, $id_hd, $item[0]);
+        $stmt->execute();
+    }
+
+    $stmt->close();
+    $conn->close();
+}

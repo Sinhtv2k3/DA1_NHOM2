@@ -35,7 +35,14 @@
 //     return pdo_query_one($sql, array($email));
 // }
 
- function insert_taikhoan($ten, $mk, $email) {
-        $sql = "INSERT INTO taikhoan (ten, mk, email ) VALUES ( ?, ?, ?)";
-        pdo_execute($sql, $ten,$mk,$email);
-    }
+function insert_taikhoan($ten, $mk, $email)
+{
+    $sql = "INSERT INTO taikhoan (ten, mk, email ) VALUES ( ?, ?, ?)";
+    pdo_execute($sql, $ten, $mk, $email);
+}
+function check_user($email, $mk)
+{
+    $sql = "SELECT * FROM taikhoan WHERE email = ? AND mk = ?";
+    return pdo_query_one($sql, [$email, $mk]);
+}
+
