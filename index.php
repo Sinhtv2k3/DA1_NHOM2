@@ -6,6 +6,7 @@ include_once "model/sanpham.php";
 include_once "model/taikhoan.php";
 include_once "model/danhmuc.php";
 include_once "model/cart.php";
+
 include_once "gobal.php";
 
 // Khởi tạo giỏ hàng nếu chưa có
@@ -25,6 +26,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         case 'dangki':
            
                         if (isset($_POST['dangki']) ) {
+
                             $ten = $_POST['username'];
                             $mk = $_POST['password'];
                             $email = $_POST['email'];

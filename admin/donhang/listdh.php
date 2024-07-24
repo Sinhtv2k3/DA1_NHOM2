@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">

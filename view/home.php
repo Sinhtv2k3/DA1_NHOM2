@@ -6,10 +6,13 @@
     <title>Product Slider</title>
     <!-- Liên kết đến CSS của Slick Carousel từ CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+
    
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <!-- Liên kết đến CSS tùy chỉnh của bạn -->
     <?php include "banner.php"; ?>
+
+ 
     <style>/* CSS Tùy Chỉnh cho Nút Điều Hướng */
 .slick-prev, .slick-next {
     width: 40px; /* Chiều rộng của nút điều hướng */
@@ -61,7 +64,10 @@
 </style>
 </head>
 <body>
+
 <main>
+
+
 
     <!-- Nội dung trang của bạn -->
     <section id="featured-products">
@@ -91,7 +97,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.product-slider').slick({
-                slidesToShow: 3, // Số lượng slide hiển thị cùng lúc
+
+                slidesToShow: 4, // Số lượng slide hiển thị cùng lúc
+
                 slidesToScroll: 1, // Số lượng slide cuộn mỗi lần
                 dots: true, // Hiển thị các điểm điều hướng dưới slider
                 arrows: true, // Hiển thị các mũi tên điều hướng
@@ -114,6 +122,7 @@
             });
         });
     </script>
+
 
 
 

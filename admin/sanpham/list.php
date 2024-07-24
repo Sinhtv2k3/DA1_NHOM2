@@ -1,4 +1,6 @@
 
+
+
 <div class="row box">
     <div class="boxtrai">
         <div class="loai logoam tren">
@@ -6,6 +8,7 @@
         </div>
         <div class="loai hieuung">
             <ul>
+<<<<<<< HEAD
             <li><a href="?act=listdm">Danh Mục</a></li>
                 <li><a href="?act=addsp">Sản Phẩm</a></li>
                 <li><a href="?act=taikhoan">Tài Khoản</a></li>
@@ -13,6 +16,7 @@
                 <li><a href="?act=listdh">Đơn Hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống Kê</a></li>
                 <li><a href="../index.php">Trang chủ</a></li>
+
             </ul>
         </div>
     </div>
@@ -29,7 +33,9 @@
                 </select>
                 <button type="submit">Tìm kiếm</button>
                 <a href="index.php?act=addsp">
+
                     <input type="button" value=" Thêm mới" class="small-button">
+
                 </a>
             </form>
         </div>
@@ -60,7 +66,9 @@
                                 <td><?= $sanpham['gia'] ?></td>
                                 <td><img src="../upload/<?= $sanpham['anh'] ?>" width="100"></td>
                                 <td><?= $sanpham['mo_ta'] ?></td>
+
                                 <td><?= $sanpham['ten_dm'] ?></td>
+
                                 <td><?= $sanpham['so_luong'] ?></td>
                                 <td><?= $trangthai ?></td>
                                 <td>

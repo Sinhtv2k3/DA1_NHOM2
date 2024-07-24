@@ -258,6 +258,7 @@
 
 // Lấy tất cả sản phẩm
 
+
 // Thêm sản phẩm mới
 function insert_sanpham($ten_sp, $gia, $anh, $so_luong, $mo_ta, $id_dm, $trangthai = 0)
 {
@@ -329,6 +330,7 @@ function update_sanpham($id, $id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $tr
     pdo_execute($sql, array($id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $trangthai, $id));
 }
 
+
 function loadall_sanpham_top5()
 {
     $sql = "select * from sanpham where 1 order by lx desc limit 0,5";
@@ -336,8 +338,35 @@ function loadall_sanpham_top5()
     return $listsanpham;
 }
 
+
+function loadall_sanpham_home()
+{
+    $sql = "select * from sanpham where 1 order by id_sp desc limit 0,9";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
+// Xóa sản phẩm
+function delete_sanpham($id) {
+    $sql = "DELETE FROM sanpham WHERE id_sp = ?";
+    pdo_execute($sql, $id);
+}
+// function loadall_sanpham_home() {
+//     $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT 10"; // Hoặc thay đổi limit tùy theo yêu cầu
+//     return pdo_query($sql);
+// }
+    
+
+// // Cập nhật sản phẩm
+// function update_sanpham($id, $id_dm, $tensp, $giasp, $mota, $hinh, $giamgia) {
+//     $sql = "UPDATE sanpham SET id_dm = ?, ten_sp = ?, gia = ?, mo_ta = ?, anh = ?, giamgia = ? WHERE id_sp = ?";
+//     pdo_execute($sql, $iddm, $tensp, $giasp, $mota, $hinh, $giamgia, $id);
+// }
+
+
 // // Lấy sản phẩm theo ID
 // function loadone_sanpham($id) {
 //     $sql = "SELECT * FROM sanpham WHERE id_sp = ?";
 //     return pdo_query_one($sql, $id);
+<<<<<<< HEAD
 // }
+

@@ -4,12 +4,14 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
+
                         <h6>SDshop</h6>
                         <p>SD-Shop quần áo chất lượng</p>
                     </div>
                     <div class="footer-section">
                         <h6>Về SDHOP</h6>
                         <p><a href="#">Giới thiệu về SDSHOP</a></p>
+
                         <p><a href="#">Danh sách cửa hàng</a></p>
                         <p><a href="#">Báo chí nói về chúng tôi</a></p>
                         <p><a href="#">Kiến thức quần áo</a></p>
@@ -23,11 +25,12 @@
                     </div>
                     <div class="footer-section footer-address">
                         <h6>Liên Hệ</h6>
+
                         <p>85 Xuân Thủy - Cầu Giấy</p>
                         <p>SD-Shop@gmail.com</p>
                         <p>+03.111.7890</p>
                         <p>+08.222.7890</p>
-                    </div>
+              </div>
                     <div class="footer-section footer-social">
                         <h6>Theo dõi chúng tôi</h6>
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -39,4 +42,5 @@
         </section>
     </footer>
 </body>
+
 </html>

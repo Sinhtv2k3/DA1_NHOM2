@@ -1,4 +1,5 @@
 <?php
+
 // function loadall_taikhoan()
 // {
 //     $sql = "SELECT * FROM taikhoan ORDER BY id_tk DESC";

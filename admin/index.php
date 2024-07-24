@@ -76,12 +76,15 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             break;
         case 'addsp':
             if (isset($_POST['themmoi'])) {
+
                 // Xử lý khi nhấn nút "Thêm Mới"
+
                 $tensp = isset($_POST['ten_sp']) ? $_POST['ten_sp'] : '';
                 $giasp = isset($_POST['gia']) ? $_POST['gia'] : '';
                 $hinh = isset($_FILES['anh']['name']) ? $_FILES['anh']['name'] : '';
                 $mota = isset($_POST['mo_ta']) ? $_POST['mo_ta'] : '';
                 $id_dm = isset($_POST['id_dm']) ? $_POST['id_dm'] : '';
+
                 $so_luong = isset($_POST['so_luong']) ? $_POST['so_luong'] : 0;
                 $trangthai = 0;
 
@@ -95,12 +98,14 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 $target_dir = "../upload/";
                 $target_file = $target_dir . basename($_FILES["anh"]["name"]);
 
+
                 // Kiểm tra lỗi và xử lý tệp tải lên
                 if ($_FILES['anh']['error'] === UPLOAD_ERR_OK) {
                     if (move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file)) {
                         // Thêm sản phẩm vào cơ sở dữ liệu sau khi tệp tải lên thành công
                         insert_sanpham($tensp, $giasp, $hinh, $so_luong, $mota, $id_dm, $trangthai);
                         $thongbao = "Thêm sản phẩm thành công";
+
                     } else {
                         $thongbao = "Lỗi khi upload file";
                     }
@@ -108,19 +113,24 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                     $thongbao = "Lỗi khi upload file: " . $_FILES['anh']['error'];
                 }
 
+
                 // Cập nhật danh sách danh mục và sản phẩm sau khi thêm mới
                 $listdanhmuc = loadall_danhmuc();
                 $listsanpham = loadall_sanpham("", 0);
+
 
                 // Hiển thị thông báo và danh sách sản phẩm
                 include "sanpham/list.php";
                 break;
             }
 
+
             // Hiển thị form thêm sản phẩm ban đầu
+
             $listdanhmuc = loadall_danhmuc();
             include "sanpham/add.php";
             break;
+
 
 
         case 'suasp':
@@ -176,6 +186,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
         default:
             include "home.php";
             break;
+
     }
 } else {
     include "home.php";

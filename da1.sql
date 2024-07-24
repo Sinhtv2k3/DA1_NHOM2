@@ -3,7 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 15, 2024 lúc 07:22 AM
+
+
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -74,8 +75,10 @@ INSERT INTO `danhmuc` (`id_dm`, `ten_dm`, `trangthai`) VALUES
 (1, 'Quần áo mùa xuân', '0'),
 (2, 'Quần áo mùa hè', '0'),
 (3, 'Quần áo mùa thu', '0'),
+
 (4, 'Quần áo mùa đông', '0'),
 (8, 'Hàng mới', '1');
+
 
 -- --------------------------------------------------------
 
@@ -116,11 +119,11 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id_sp`, `ten_sp`, `gia`, `anh`, `so_luong`, `mo_ta`, `trangthai`, `id_dm`) VALUES
+
 (6, 'Áo len', 10000, '322568893_553306573480066_7940408337337887007_n.jpg', 4, 'Hàng đẹp', 0, 4),
 (8, 'Mùa xuân', 10000, '322568893_553306573480066_7940408337337887007_n.jpg', 4, 'Mùa xuân', 0, 4),
 (10, 'Mùa xuân', 10000, '322568893_553306573480066_7940408337337887007_n.jpg', 4, 'Mùa xuân', 0, 4);
-
--- --------------------------------------------------------
+----------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `taikhoan`
@@ -198,6 +201,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
+
   MODIFY `id_dm` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
@@ -210,6 +214,7 @@ ALTER TABLE `hoadon`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
+
   MODIFY `id_sp` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --

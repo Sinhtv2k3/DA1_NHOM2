@@ -106,6 +106,7 @@
 // {
 //   $sql = "update `bill` set `bill_status`='5' where `id` = $iddh";
 //   pdo_execute($sql);
+<<<<<<< HEAD
 // }
 
 function insert_dh($sl, $tong_tien, $ten_nd, $sdt, $dia_chi, $email, $trangthai = 0, $id_hd, $id_sp)

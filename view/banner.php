@@ -1,4 +1,5 @@
 <div class="banner">
+
     <div class="slide active">
         <img src="upload/anh1.jpg" alt="Banner 1">
     </div>
