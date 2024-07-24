@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="boxphai">
+        <div class="tieudeb">
+            <h2>Thêm Danh Mục</h2>
+        </div>
+        <div class="bang">
+            <form action="index.php?act=adddm" method="post">
+                <div class="maloai">
+                    <label for="maloai">Mã Loại</label><br>
+                    <input type="text" id="maloai" name="maloai" disabled>
+                </div>
+                <div class="maloai">
+                    <label for="tenloai">Tên Loại</label><br>
+                    <input type="text" id="tenloai" name="tenloai">
+                </div>
+                <div class="maloai">
+                    <input type="submit" name="submit" value="Thêm Mới">
+                    <button type="button" onclick="location.href='index.php?act=listdm'">Danh sách</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
