@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký</title>
-    <link rel="stylesheet" href="../css/taikhoan.css">
+    <link rel="stylesheet" href="../../css/taikhoan.css">
+    <script>
+        // Chuyển hướng sau 2 giây
+        function redirectToLogin() {
+            setTimeout(function() {
+                window.location.href = '/DA1_NHOM2/view/taikhoan/login.php';
+            }, 2000);
+        }
+
+        window.onload = function() {
+            <?php if (isset($_SESSION['register_message'])): ?>
+                redirectToLogin();
+            <?php endif; ?>
+        }
+    </script>
 </head>
 <body>
-<div class="form-wrapper">
+    <div class="form-wrapper">
         <h2>Đăng Ký</h2>
-        <form action="index.php?act=dangki" method="POST">
-
+        <form action="/DA1_NHOM2/index.php?act=dangky" method="POST">
             <div class="form-group">
-                <label for="username">Tên người dùng:</label>   
+                <label for="username">Tên người dùng:</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
@@ -23,13 +36,21 @@
                 <label for="password">Mật khẩu:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="form-group">
-                <label for="confirm_password">Xác nhận mật khẩu:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
-            </div>
-            <button type="submit" name="dangki">Đăng Ký</button>
+            <button type="submit" name="dangky">Đăng Ký</button>
         </form>
-        <p><a href="/login.php">Đã có tài khoản? Đăng nhập</a></p>
+        <p><a href="/DA1_NHOM2/view/taikhoan/login.php">Đã có tài khoản? Đăng nhập</a></p>
+
+        <?php
+        if (isset($_SESSION['register_error'])) {
+            echo '<p style="color: red;">' . $_SESSION['register_error'] . '</p>';
+            unset($_SESSION['register_error']);
+        }
+
+        if (isset($_SESSION['register_message'])) {
+            echo '<p>' . $_SESSION['register_message'] . '</p>';
+            unset($_SESSION['register_message']); 
+        }
+        ?>
     </div>
 </body>
 </html>

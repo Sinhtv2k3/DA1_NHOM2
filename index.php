@@ -22,43 +22,44 @@ include "view/banner.php";
 include "view/home.php";
 include "view/footer.php";
 
-if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
-    $act = $_GET['act'];
-    switch ($act) {
-        case 'dangki':
-
-            if (isset($_POST['dangki'])) {
-
+if ($action) {
+    switch ($action) {
+        case 'dangky':
+            if (isset($_POST['dangky'])) {
                 $ten = $_POST['username'];
-                $mk = $_POST['password'];
                 $email = $_POST['email'];
-
-                insert_taikhoan($ten, $mk, $email);
+                $mk = $_POST['password'];
+        
+                // Kiểm tra mật khẩu
+                if (strlen($mk) < 6) {
+                    $_SESSION['register_error'] = "Mật khẩu phải có ít nhất 6 ký tự!";
+                } else {
+                    insert_taikhoan($ten, $mk, $email);
+                    $_SESSION['register_message'] = "Đăng ký thành công! Đang chuyển hướng đến trang đăng nhập...";
+                    header('Location: /DA1_NHOM2/index.php?act=dangky');
+                    exit();
+                }
             }
             include "view/taikhoan/dangki.php";
             break;
-        case 'login':
+        
+        case 'dangnhap':
             if (isset($_POST['dangnhap'])) {
-
                 $email = $_POST['email'];
                 $mk = $_POST['password'];
-                $checkus = check_user($email, $mk);
-                if (is_array($checkus)) {
-                    $_SESSION['checkus'] = $checkus;
-                    header('location: ?act home');
+                $user = check_user($email, $mk);
+                if ($user) {
+                    $_SESSION['user'] = $user;
+                    $_SESSION['login_message'] = "Đăng nhập thành công!"; // Thiết lập thông báo
+                    header('Location: /DA1_NHOM2/index.php'); // Chuyển hướng về trang chủ
+                    exit();
                 } else {
-                    $thongbaolg = "Tài khoản sai hoặc không tồn tại vui lòng kiểm tra lại";
+                    $error = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
                 }
             }
-            //
-            include 'view/taikhoan/login.php';
+            include "view/taikhoan/login.php";
             break;
-
-        case 'logout': {
-                unset($_SESSION['checkus']);
-                header('location:?act home');
-                break;
-            }
+        
         case 'addToCart':
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
                 $id_sp = $_POST['id_sp'];
@@ -72,6 +73,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             }
             include "view/giohang.php";
             break;
+
         default:
             include "view/home.php";
             break;
