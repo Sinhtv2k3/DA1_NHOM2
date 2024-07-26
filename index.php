@@ -55,19 +55,23 @@ if ($act) {
             include "view/taikhoan/dangnhap.php";
             break;
 
-        case 'addToCart':
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
-                $id_sp = $_POST['id_sp'];
-                $ten_sp = $_POST['ten_sp'];
-                $anh = $_POST['anh'];
-                $gia = $_POST['gia'];
-                $soluong = 1;
-                $ttien = $soluong * $gia;
-                $spadd = [$id_sp, $ten_sp, $anh, $gia, $soluong, $ttien];
-                array_push($_SESSION['myCart'], $spadd);
-            }
-            include "view/giohang.php";
-            break;
+            case 'addToCart':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
+                    $id_sp = $_POST['id_sp'];
+                    $ten_sp = $_POST['ten_sp'];
+                    $anh = $_POST['anh'];
+                    $gia = $_POST['gia'];
+                    $soluong = 1;
+                    $ttien = $soluong * $gia;
+                    $spadd = [$id_sp, $ten_sp, $anh, $gia, $soluong, $ttien];
+                    array_push($_SESSION['myCart'], $spadd);
+            
+                    header("Location: http://localhost/DA1_NHOM2/view/giohang.php");
+                    exit(); 
+                }
+               
+                break;
+            
 
         default:
             include "view/home.php";

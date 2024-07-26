@@ -68,7 +68,7 @@
                     <button id="account-button"><i class="fas fa-user"></i>
                         <?php
                         if (isset($_SESSION['user'])) {
-                            echo $_SESSION['user']['ten']; // Hiển thị tên người dùng từ session
+                            echo $_SESSION['user']['ten']; 
                         } else {
                             echo 'Tài Khoản';
                         }

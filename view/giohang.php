@@ -1,7 +1,7 @@
 <?php
 session_start();
 $cart = isset($_SESSION['myCart']) ? $_SESSION['myCart'] : [];
-$img_path = "../upload/";
+$img_path = "../upload/"; // Đảm bảo rằng đây là đường dẫn đúng đến thư mục chứa ảnh
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +14,6 @@ $img_path = "../upload/";
 </head>
 
 <body>
-    <?php
-    
-    ?>
     <h1>Giỏ Hàng</h1>
     <table>
         <tr>
@@ -31,11 +28,13 @@ $img_path = "../upload/";
         $tong = 0;
         foreach ($cart as $item) {
             if (isset($item[2], $item[1], $item[3], $item[4])) {
-                $anh = $img_path . $item[2]; 
+                // Chỉ cần thêm tên file ảnh vào đường dẫn đã có
+                $anh = htmlspecialchars($img_path . basename($item[2]));
                 $ttien = $item[3] * $item[4];
                 $tong += $ttien;
+
                 echo '<tr>
-                    <td><img src="' . htmlspecialchars($anh) . '" alt="Ảnh sản phẩm"></td>
+                    <td><img src="' . $anh . '" alt="Ảnh sản phẩm" style="width: 100px; height: 100px;" onerror="this.src=\'../upload/default.jpg\'"></td>
                     <td>' . htmlspecialchars($item[1]) . '</td>
                     <td>' . number_format($item[3]) . ' VND</td>
                     <td>' . $item[4] . '</td>
@@ -51,19 +50,17 @@ $img_path = "../upload/";
         ?>
     </table>
     <form class="checkout-form" action="index.php?act=checkout" method="POST">
-    <h2>Thông Tin Đặt Hàng</h2>
-    <label for="name">Tên:</label>
-    <input type="text" id="name" name="name" required><br>
-    <label for="sdt">Số điện thoại:</label>
-    <input type="tel" id="sdt" name="sdt" required><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br>
-    <label for="address">Địa Chỉ:</label>
-    <input type="text" id="address" name="address" required><br>
-    <button type="submit">Xác Nhận Đặt Hàng</button>
-</form>
-
-
+        <h2>Thông Tin Đặt Hàng</h2>
+        <label for="name">Tên:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="sdt">Số điện thoại:</label>
+        <input type="tel" id="sdt" name="sdt" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="address">Địa Chỉ:</label>
+        <input type="text" id="address" name="address" required><br>
+        <button type="submit">Xác Nhận Đặt Hàng</button>
+    </form>
 </body>
 
 </html>
