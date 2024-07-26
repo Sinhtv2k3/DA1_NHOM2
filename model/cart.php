@@ -121,10 +121,11 @@ function loadall_donhang()
     $sql = "SELECT c.id_ct_hd, c.sl, c.tong_tien, c.ten_nd, c.sdt, c.dia_chi, c.email, c.trangthai, c.id_hd, c.id_sp, h.ngay AS ngay_dat
             FROM cthoadon c
             JOIN hoadon h ON c.id_hd = h.id_hd
-            ORDER BY c.id_hd DESC";
+            ORDER BY c.id_ct_hd ASC";
     $listdonhang = pdo_query($sql);
     return $listdonhang;
 }
+
 
 
 function view_donhang($id)
@@ -169,29 +170,29 @@ function removeFromCart($productId)
     }
 }
 
-function addOrder($name, $email, $phone, $address, $cart)
-{
-    $conn = new mysqli('localhost', 'root', '', 'da1');
+// function addOrder($name, $email, $phone, $address, $cart)
+// {
+//     $conn = new mysqli('localhost', 'root', '', 'da1');
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+//     if ($conn->connect_error) {
+//         die("Connection failed: " . $conn->connect_error);
+//     }
 
-    // Thêm thông tin hóa đơn vào bảng hoadon
-    $stmt = $conn->prepare("INSERT INTO hoadon (ngay, ten, email, dia_chi, sdt, id_tk) VALUES (NOW(), ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssi", $name, $email, $address, $phone, $_SESSION['user_id']);
-    $stmt->execute();
+//     // Thêm thông tin hóa đơn vào bảng hoadon
+//     $stmt = $conn->prepare("INSERT INTO hoadon (ngay, ten, email, dia_chi, sdt, id_tk) VALUES (NOW(), ?, ?, ?, ?, ?)");
+//     $stmt->bind_param("ssssi", $name, $email, $address, $phone, $_SESSION['user_id']);
+//     $stmt->execute();
 
-    $id_hd = $stmt->insert_id; // Lấy ID hóa đơn mới tạo
+//     $id_hd = $stmt->insert_id; // Lấy ID hóa đơn mới tạo
 
-    // Thêm thông tin chi tiết hóa đơn vào bảng cthoadon
-    foreach ($cart as $item) {
-        $stmt = $conn->prepare("INSERT INTO cthoadon (sl, tong_tien, ten_nd, sdt, dia_chi, email, trangthai, id_hd, id_sp) VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?)");
-        $ttien = $item[3] * $item[4];
-        $stmt->bind_param("iissssii", $item[4], $ttien, $name, $phone, $address, $email, $id_hd, $item[0]);
-        $stmt->execute();
-    }
+//     // Thêm thông tin chi tiết hóa đơn vào bảng cthoadon
+//     foreach ($cart as $item) {
+//         $stmt = $conn->prepare("INSERT INTO cthoadon (sl, tong_tien, ten_nd, sdt, dia_chi, email, trangthai, id_hd, id_sp) VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?)");
+//         $ttien = $item[3] * $item[4];
+//         $stmt->bind_param("iissssii", $item[4], $ttien, $name, $phone, $address, $email, $id_hd, $item[0]);
+//         $stmt->execute();
+//     }
 
-    $stmt->close();
-    $conn->close();
-}
+//     $stmt->close();
+//     $conn->close();
+// }

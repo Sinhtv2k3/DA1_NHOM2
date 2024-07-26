@@ -14,6 +14,9 @@ $img_path = "../upload/";
 </head>
 
 <body>
+    <?php
+    
+    ?>
     <h1>Giỏ Hàng</h1>
     <table>
         <tr>

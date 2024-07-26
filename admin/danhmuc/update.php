@@ -1,20 +1,6 @@
+<!-- index.php hoặc trang cần sử dụng boxtrai -->
 <div class="row box">
-    <div class="boxtrai">
-        <div class="loai logoam tren">
-            <img src="../upload/images (1).png" width="100%" height="100%" alt="">
-        </div>
-        <div class="loai hieuung">
-            <ul>
-            <li><a href="?act=listdm">Danh Mục</a></li>
-                <li><a href="?act=addsp">Sản Phẩm</a></li>
-                <li><a href="?act=taikhoan">Tài Khoản</a></li>
-                <li><a href="?act=dsbl">Bình Luận</a></li>
-                <li><a href="?act=listdh">Đơn Hàng</a></li>
-                <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Trang chủ</a></li>
-            </ul>
-        </div>
-    </div>
+    <?php include 'boxtrai.php'; ?>
     <div class="boxphai">
         <div class="tieudeb">
             <h2>Cập Nhật Danh Mục</h2>
@@ -37,8 +23,12 @@
                     </select>
                 </div>
                 <div class="nut">
-                    <input type="submit" name="capnhat" value="Cập Nhật">
-                    <a href="index.php?act=listdm"><input type="button" value="Danh sách"></a>
+                    <button type="submit" name="capnhat" class="small-button">
+                        <i class="fas fa-save"></i> Cập Nhật
+                    </button>
+                    <a href="index.php?act=listdm" class="small-button">
+                        <i class="fas fa-list"></i> Danh Sách
+                    </a>
                 </div>
                 <?php if (isset($thongbao) && ($thongbao != "")) echo $thongbao; ?>
             </form>

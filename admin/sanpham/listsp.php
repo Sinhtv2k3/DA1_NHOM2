@@ -1,21 +1,5 @@
-
 <div class="row box">
-    <div class="boxtrai">
-        <div class="loai logoam tren">
-            <img src="../upload/images (1).png" width="100%" height="100%" alt="">
-        </div>
-        <div class="loai hieuung">
-            <ul>
-            <li><a href="?act=listdm">Danh Mục</a></li>
-                <li><a href="?act=addsp">Sản Phẩm</a></li>
-                <li><a href="?act=taikhoan">Tài Khoản</a></li>
-                <li><a href="?act=dsbl">Bình Luận</a></li>
-                <li><a href="?act=listdh">Đơn Hàng</a></li>
-                <li><a href="index.php?act=thongke">Thống Kê</a></li>
-                <li><a href="../index.php">Trang chủ</a></li>
-            </ul>
-        </div>
-    </div>
+    <?php include 'boxtrai.php'; ?>
     <div class="boxphai">
         <div class="tieudeb">
             <h2>Danh Sách Sản Phẩm</h2>
@@ -27,10 +11,8 @@
                         <option value="<?php echo $danhmuc['id_dm']; ?>"><?php echo $danhmuc['ten_dm']; ?></option>
                     <?php } ?>
                 </select>
-                <button type="submit">Tìm kiếm</button>
-                <a href="index.php?act=addsp">
-                    <input type="button" value=" Thêm mới" class="small-button">
-                </a>
+                <button type="submit" class="small-button"><i class="fas fa-search"></i> Tìm kiếm</button>
+                <a href="index.php?act=addsp" class="small-button"><i class="fas fa-plus"></i> Thêm mới</a>
             </form>
         </div>
         <div class="bang">
@@ -64,8 +46,8 @@
                                 <td><?= $sanpham['so_luong'] ?></td>
                                 <td><?= $trangthai ?></td>
                                 <td>
-                                    <a href="index.php?act=suasp&id=<?= $sanpham['id_sp'] ?>" class="confim">Sửa</a>
-                                    <a href="#" onclick="return confirmDelete(<?= htmlspecialchars($sanpham['id_sp']) ?>)" class="confim">Xóa</a>
+                                    <a href="index.php?act=suasp&id=<?= $sanpham['id_sp'] ?>" class="small-button"><i class="fas fa-edit"></i></a>
+                                    <a href="#" onclick="return confirmDelete(<?= htmlspecialchars($sanpham['id_sp']) ?>)" class="small-button"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             <?php

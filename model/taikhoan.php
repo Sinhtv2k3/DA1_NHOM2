@@ -1,4 +1,5 @@
 <?php
+
 // function loadall_taikhoan()
 // {
 //     $sql = "SELECT * FROM taikhoan ORDER BY id_tk DESC";
@@ -42,7 +43,7 @@ function insert_taikhoan($ten, $mk, $email)
 }
 function check_user($email, $mk)
 {
+    
     $sql = "SELECT * FROM taikhoan WHERE email = ? AND mk = ?";
     return pdo_query_one($sql, [$email, $mk]);
 }
-

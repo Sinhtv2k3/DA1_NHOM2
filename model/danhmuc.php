@@ -55,7 +55,7 @@ function insert_danhmuc($id_dm, $tendm, $trangthai)
 
 function loadall_danhmuc()
 {
-    $sql = "SELECT * FROM danhmuc ORDER BY id_dm DESC";
+    $sql = "SELECT * FROM danhmuc ORDER BY id_dm ASC";
     $listdanhmuc = pdo_query($sql);
     return $listdanhmuc;
 }

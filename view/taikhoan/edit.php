@@ -12,9 +12,9 @@
         <h3 style="padding-left: 515px;">Cập Nhật Tài Khoản</h3>
         <div class="col-3"></div>
         <?php
-            if (isset($_SESSION['checkus']) && (is_array($_SESSION['checkus']))) {
+            if (isset($_SESSION['checkusername']) && (is_array($_SESSION['checkusername']))) {
                 # code...
-                extract($_SESSION['checkus']);
+                extract($_SESSION['checkusername']);
             }
             ?>
         <div class="col-6">

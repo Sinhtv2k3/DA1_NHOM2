@@ -288,7 +288,7 @@ function loadall_sanpham($kyw = '', $id_dm = 0) {
 
     $sql .= " AND dm.trangthai = 0";
     
-    $sql .= " ORDER BY sp.id_sp DESC"; 
+    $sql .= " ORDER BY sp.id_sp ASC"; 
     return pdo_query($sql, $params);
 }
 //Load sản phẩm ra trang chủ

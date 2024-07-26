@@ -14,14 +14,14 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             /*-----------------------------CRUD DANH MỤC------------------------- */
         case 'listdm':
             $listdanhmuc = loadall_danhmuc();
-            include "danhmuc/list.php";
+            include "danhmuc/listdm.php";
             break;
         case 'xoadm':
             if (isset($_GET['id_dm']) && $_GET['id_dm'] > 0) {
                 delete_danhmuc($_GET['id_dm']);
             }
             $listdanhmuc = loadall_danhmuc();
-            include "danhmuc/list.php";
+            include "danhmuc/listdm.php";
             break;
         case 'adddm':
             if (isset($_POST['themmoi'])) {
@@ -64,7 +64,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             $id_dm = isset($_POST['id_dm']) ? $_POST['id_dm'] : 0;
             $listdanhmuc = loadall_danhmuc();
             $listsanpham = loadall_sanpham($kyw, $id_dm);
-            include "sanpham/list.php";
+            include "sanpham/listsp.php";
             break;
 
         case 'xoasp':
@@ -72,7 +72,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 delete_sanpham($_GET['id']);
             }
             $listsanpham = loadall_sanpham("", 0);
-            include "sanpham/list.php";
+            include "sanpham/listsp.php";
             break;
         case 'addsp':
             if (isset($_POST['themmoi'])) {
@@ -113,7 +113,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 $listsanpham = loadall_sanpham("", 0);
 
                 // Hiển thị thông báo và danh sách sản phẩm
-                include "sanpham/list.php";
+                include "sanpham/listsp.php";
                 break;
             }
 
@@ -162,16 +162,14 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 exit();
             }
             break;
-            case 'listdh':
-                $listdonhang = loadall_donhang();
-                if (empty($listdonhang)) {
-                    echo "Không có đơn hàng nào!";
-                } else {
-                    include "donhang/listdh.php";
-                }
+        case 'listdh':
+            $listdonhang = loadall_donhang();
+            if (empty($listdonhang)) {
+                echo "Không có đơn hàng nào!";
+            } else {
                 include "donhang/listdh.php";
-                break;
-
+            }
+            break;
 
         default:
             include "home.php";

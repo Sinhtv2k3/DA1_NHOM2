@@ -31,8 +31,7 @@
             const accountDropdown = document.querySelector('.account-dropdown-content');
 
             accountButton.addEventListener('click', (event) => {
-                event.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
-                // Toggle hiển thị menu đăng nhập/đăng ký
+                event.stopPropagation(); 
                 if (accountDropdown.style.display === 'block') {
                     accountDropdown.style.display = 'none';
                 } else {
@@ -55,9 +54,9 @@
         <div class="container">
             <div class="hh">
                 <div class="row menudm">
-                    <div class="col-1">
-                        <a href="index.html"><img src="logo.png" alt="Logo"></a>
-                    </div>
+                    <!-- <div class="col-1">
+                        <a href="index.php"><img src="../upload/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck-thumbnail.png" alt="Logo"></a>
+                    </div> -->
                     <div class="col-2"><a href="index.php">Home</a></div>
                     <div class="col-2"><a href="#">Sản Phẩm</a></div>
                     <div class="col-2"><a href="#">Giới Thiệu</a></div>

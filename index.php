@@ -26,30 +26,39 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
         case 'dangki':
+
             if (isset($_POST['dangki'])) {
+
                 $ten = $_POST['username'];
-                $email = $_POST['email'];
                 $mk = $_POST['password'];
-                insert_taikhoan($ten, $email, $mk);
-                header('location: ?act=login');
+                $email = $_POST['email'];
+
+                insert_taikhoan($ten, $mk, $email);
             }
             include "view/taikhoan/dangki.php";
             break;
-        case 'dangnhap':
+        case 'login':
             if (isset($_POST['dangnhap'])) {
+
                 $email = $_POST['email'];
                 $mk = $_POST['password'];
-                $user = check_user($email, $mk);
-                if ($user) {
-                    $_SESSION['user'] = $user;
-                    header('Location: index.php');
-                    exit();
+                $checkus = check_user($email, $mk);
+                if (is_array($checkus)) {
+                    $_SESSION['checkus'] = $checkus;
+                    header('location: ?act home');
                 } else {
-                    $error = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
+                    $thongbaolg = "Tài khoản sai hoặc không tồn tại vui lòng kiểm tra lại";
                 }
             }
-            include "view/taikhoan/login.php";
+            //
+            include 'view/taikhoan/login.php';
             break;
+
+        case 'logout': {
+                unset($_SESSION['checkus']);
+                header('location:?act home');
+                break;
+            }
         case 'addToCart':
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
                 $id_sp = $_POST['id_sp'];
