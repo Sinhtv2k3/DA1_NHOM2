@@ -9,7 +9,7 @@
         // Chuyển hướng sau 2 giây
         function redirectToLogin() {
             setTimeout(function() {
-                window.location.href = '/DA1_NHOM2/view/taikhoan/login.php';
+                window.location.href = '/DA1_NHOM2/view/taikhoan/dangnhap.php';
             }, 2000);
         }
 
@@ -38,7 +38,7 @@
             </div>
             <button type="submit" name="dangky">Đăng Ký</button>
         </form>
-        <p><a href="/DA1_NHOM2/view/taikhoan/login.php">Đã có tài khoản? Đăng nhập</a></p>
+        <p><a href="/DA1_NHOM2/view/taikhoan/dangnhap.php">Đã có tài khoản? Đăng nhập</a></p>
 
         <?php
         if (isset($_SESSION['register_error'])) {

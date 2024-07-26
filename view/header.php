@@ -31,7 +31,7 @@
             const accountDropdown = document.querySelector('.account-dropdown-content');
 
             accountButton.addEventListener('click', (event) => {
-                event.stopPropagation(); 
+                event.stopPropagation();
                 if (accountDropdown.style.display === 'block') {
                     accountDropdown.style.display = 'none';
                 } else {
@@ -50,32 +50,43 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="hh">
-                <div class="row menudm">
-                    <!-- <div class="col-1">
-                        <a href="index.php"><img src="../upload/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck-thumbnail.png" alt="Logo"></a>
-                    </div> -->
-                    <div class="col-2"><a href="index.php">Home</a></div>
-                    <div class="col-2"><a href="#">Sản Phẩm</a></div>
-                    <div class="col-2"><a href="#">Giới Thiệu</a></div>
-                    <div class="col-2"><a href="#">Liên Hệ</a></div>
-                    <div class="col-2"><a href="#">Xem Thêm</a></div>
-                </div>
-                <div class="header-icons">
-                    <input type="search" placeholder="Tìm kiếm sản phẩm...">
-                    <a href="view/giohang.php"><i class="fas fa-shopping-cart"></i> Giỏ Hàng</a>
-                    <a href="#"><i class="fas fa-file-alt"></i> Đơn Hàng</a>
-                    <div class="account-menu">
-                        <button id="account-button"><i class="fas fa-user"></i> Tài Khoản</button>
-                        <div class="account-dropdown-content">
+<header>
+    <div class="container">
+        <div class="hh">
+            <div class="row menudm">
+                <div class="col-2"><a href="index.php">Home</a></div>
+                <div class="col-2"><a href="#">Sản Phẩm</a></div>
+                <div class="col-2"><a href="#">Giới Thiệu</a></div>
+                <div class="col-2"><a href="#">Liên Hệ</a></div>
+                <div class="col-2"><a href="#">Xem Thêm</a></div>
+            </div>
+            <div class="header-icons">
+                <input type="search" placeholder="Tìm kiếm sản phẩm...">
+                <a href="view/giohang.php"><i class="fas fa-shopping-cart"></i> Giỏ Hàng</a>
+                <a href="#"><i class="fas fa-file-alt"></i> Đơn Hàng</a>
+                <div class="account-menu">
+                    <button id="account-button"><i class="fas fa-user"></i>
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            echo $_SESSION['user']['ten']; // Hiển thị tên người dùng từ session
+                        } else {
+                            echo 'Tài Khoản';
+                        }
+                        ?>
+                    </button>
+                    <div class="account-dropdown-content">
+                        <?php if (isset($_SESSION['user'])): ?>
+                            <a href="view/taikhoan/logout.php">Đăng Xuất</a>
+                        <?php else: ?>
                             <a href="view/taikhoan/dangki.php">Đăng Ký</a>
-                            <a href="view/taikhoan/login.php">Đăng Nhập</a>
-                        </div>
+                            <a href="view/taikhoan/dangnhap.php">Đăng Nhập</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-    </header>
+        </div>
+    </div>
+</header>
 </body>
+
 </html>

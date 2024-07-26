@@ -1,6 +1,6 @@
 <?php
 session_start();
-ob_start();
+
 include_once "model/pdo.php";
 include_once "model/sanpham.php";
 include_once "model/taikhoan.php";
@@ -13,24 +13,19 @@ if (!isset($_SESSION['myCart'])) {
     $_SESSION['myCart'] = [];
 }
 
-$action = isset($_GET['act']) ? $_GET['act'] : '';
+$act = isset($_GET['act']) ? $_GET['act'] : '';
 $spnew = loadall_sanpham_home();
 $listdanhmuc = loadall_danhmuc();
 
-include "view/header.php";
-include "view/banner.php";
-include "view/home.php";
-include "view/footer.php";
-
-if ($action) {
-    switch ($action) {
+// Xử lý các hành động cụ thể
+if ($act) {
+    switch ($act) {
         case 'dangky':
             if (isset($_POST['dangky'])) {
                 $ten = $_POST['username'];
                 $email = $_POST['email'];
                 $mk = $_POST['password'];
-        
-                // Kiểm tra mật khẩu
+
                 if (strlen($mk) < 6) {
                     $_SESSION['register_error'] = "Mật khẩu phải có ít nhất 6 ký tự!";
                 } else {
@@ -42,24 +37,24 @@ if ($action) {
             }
             include "view/taikhoan/dangki.php";
             break;
-        
+
         case 'dangnhap':
             if (isset($_POST['dangnhap'])) {
                 $email = $_POST['email'];
                 $mk = $_POST['password'];
                 $user = check_user($email, $mk);
                 if ($user) {
-                    $_SESSION['user'] = $user;
-                    $_SESSION['login_message'] = "Đăng nhập thành công!"; // Thiết lập thông báo
-                    header('Location: /DA1_NHOM2/index.php'); // Chuyển hướng về trang chủ
+                    $_SESSION['user'] = $user; 
+                    $_SESSION['login_message'] = "Đăng nhập thành công!";
+                    header('Location: /DA1_NHOM2/index.php');
                     exit();
                 } else {
                     $error = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
                 }
             }
-            include "view/taikhoan/login.php";
+            include "view/taikhoan/dangnhap.php";
             break;
-        
+
         case 'addToCart':
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addToCart'])) {
                 $id_sp = $_POST['id_sp'];
@@ -78,4 +73,11 @@ if ($action) {
             include "view/home.php";
             break;
     }
+} else {
+    // Include standard view files
+    include "view/header.php";
+    include "view/banner.php";
+    include "view/home.php";
+    include "view/footer.php";
 }
+?>
