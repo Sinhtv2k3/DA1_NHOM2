@@ -330,6 +330,12 @@ function update_sanpham($id, $id_dm, $tensp, $giasp, $mota, $hinh, $soluong, $tr
 }
 
 
+function loadall_sanpham_top5()
+{
+    $sql = "select * from sanpham where 1 order by lx desc limit 0,5";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
 // // Lấy sản phẩm theo ID
 // function loadone_sanpham($id) {
 //     $sql = "SELECT * FROM sanpham WHERE id_sp = ?";

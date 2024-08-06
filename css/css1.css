@@ -264,16 +264,22 @@ main {
 .product-card button:hover {
     background-color: #2980b9;
 }
-/* Định dạng thông báo giỏ hàng */
-.cartMessage {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 10px;
-    border: 1px solid #c3e6cb;
+
+.btn-back-home {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
 }
 
+.btn-back-home:hover {
+    background-color: #0056b3;
+}
 /* Footer */
 footer {
     background-color: #333;

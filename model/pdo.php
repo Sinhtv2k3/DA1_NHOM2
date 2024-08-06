@@ -1,11 +1,10 @@
 <?php
-
 /**
  * Lấy kết nối PDO đến cơ sở dữ liệu
  * @return PDO đối tượng kết nối PDO
  */
 function pdo_get_connection() {
-    $dburl = "mysql:host=localhost;dbname=da1;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=duanmot;charset=utf8";
     $username = 'root';
     $password = '';
 
@@ -25,15 +24,10 @@ function pdo_get_connection() {
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_execute($sql, $sql_args = array()) {
-    try {
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
-    }
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($sql_args);
+    $conn = null; // Đảm bảo giải phóng kết nối
 }
 
 /**
@@ -44,16 +38,12 @@ function pdo_execute($sql, $sql_args = array()) {
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_execute_return_lastInsertId($sql, $sql_args = array()) {
-    try {
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        return $conn->lastInsertId();
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
-    }
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($sql_args);
+    $lastInsertId = $conn->lastInsertId();
+    $conn = null; // Đảm bảo giải phóng kết nối
+    return $lastInsertId;
 }
 
 /**
@@ -64,17 +54,12 @@ function pdo_execute_return_lastInsertId($sql, $sql_args = array()) {
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query($sql, $sql_args = array()) {
-    try {
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $rows;
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
-    }
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($sql_args);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $conn = null; // Đảm bảo giải phóng kết nối
+    return $rows;
 }
 
 /**
@@ -85,17 +70,12 @@ function pdo_query($sql, $sql_args = array()) {
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_one($sql, $sql_args = array()) {
-    try {
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
-    }
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($sql_args);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $conn = null; // Đảm bảo giải phóng kết nối
+    return $row;
 }
 
 /**
@@ -106,17 +86,12 @@ function pdo_query_one($sql, $sql_args = array()) {
  * @throws PDOException lỗi thực thi câu lệnh
  */
 function pdo_query_value($sql, $sql_args = array()) {
-    try {
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ? array_values($row)[0] : null;
-    } catch (PDOException $e) {
-        throw $e;
-    } finally {
-        unset($conn);
-    }
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($sql_args);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $conn = null; // Đảm bảo giải phóng kết nối
+    return $row ? array_values($row)[0] : null;
 }
 
 /**
@@ -128,5 +103,4 @@ function getProductById($productId) {
     $sql = "SELECT * FROM sanpham WHERE id_sp = ?";
     return pdo_query_one($sql, [$productId]);
 }
-
 ?>

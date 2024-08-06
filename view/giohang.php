@@ -1,66 +1,115 @@
 <?php
 session_start();
-$cart = isset($_SESSION['myCart']) ? $_SESSION['myCart'] : [];
-$img_path = "../upload/"; // Đảm bảo rằng đây là đường dẫn đúng đến thư mục chứa ảnh
-?>
+include_once "../model/cart.php";
+include_once "../model/hoadon.php";
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Xử lý cập nhật số lượng giỏ hàng
+    if (isset($_POST['quantity'])) {
+        foreach ($_POST['quantity'] as $index => $quantity) {
+            if (isset($_SESSION['myCart'][$index])) {
+                $_SESSION['myCart'][$index][4] = (int)$quantity; // Cập nhật số lượng
+            }
+        }
+        header('Location: giohang.php'); // Quay lại trang giỏ hàng
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <title>Giỏ Hàng</title>
-    <link rel="stylesheet" href="../css/giohang.css">
-</head>
+    <link rel="stylesheet" href="../css/gh.css">
+    <script>
+        function updateTotal() {
+            var total = 0;
+            var rows = document.querySelectorAll('table tr[id^="item-"]');
+            rows.forEach(function(row) {
+                var quantity = parseInt(row.querySelector('.quantity').value);
+                var price = parseFloat(row.querySelector('.item-price').textContent.replace(' VND', '').replace(',', ''));
+                var itemTotal = row.querySelector('.item-total');
+                var rowTotal = quantity * price;
+                itemTotal.textContent = rowTotal.toLocaleString() + ' VND';
+                total += rowTotal;
+            });
+            document.getElementById('total').textContent = total.toLocaleString() + ' VND';
+        }
 
+        document.addEventListener('DOMContentLoaded', function() {
+            var quantityInputs = document.querySelectorAll('.quantity');
+            quantityInputs.forEach(function(input) {
+                input.addEventListener('input', updateTotal);
+            });
+            updateTotal(); // Cập nhật tổng khi trang được tải
+
+            function updateQRCodeDisplay() {
+                var paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+                var qrCodeImg = document.getElementById('qr-code');
+
+                if (paymentMethod === 'transfer') {
+                    qrCodeImg.style.display = 'block';
+                } else {
+                    qrCodeImg.style.display = 'none';
+                }
+            }
+
+            var paymentMethodRadios = document.querySelectorAll('input[name="payment_method"]');
+            paymentMethodRadios.forEach(function(radio) {
+                radio.addEventListener('change', updateQRCodeDisplay);
+            });
+
+            updateQRCodeDisplay();
+        });
+    </script>
+</head>
 <body>
     <h1>Giỏ Hàng</h1>
-    <table>
-        <tr>
-            <th>Ảnh Sản Phẩm</th>
-            <th>Tên Sản Phẩm</th>
-            <th>Giá</th>
-            <th>Số Lượng</th>
-            <th>Thành Tiền</th>
-            <th>Thao Tác</th>
-        </tr>
-        <?php
-        $tong = 0;
-        foreach ($cart as $item) {
-            if (isset($item[2], $item[1], $item[3], $item[4])) {
-                // Chỉ cần thêm tên file ảnh vào đường dẫn đã có
-                $anh = htmlspecialchars($img_path . basename($item[2]));
-                $ttien = $item[3] * $item[4];
-                $tong += $ttien;
-
-                echo '<tr>
-                    <td><img src="' . $anh . '" alt="Ảnh sản phẩm" style="width: 100px; height: 100px;" onerror="this.src=\'../upload/default.jpg\'"></td>
-                    <td>' . htmlspecialchars($item[1]) . '</td>
-                    <td>' . number_format($item[3]) . ' VND</td>
-                    <td>' . $item[4] . '</td>
-                    <td>' . number_format($ttien) . ' VND</td>
-                    <td><a href="index.php?act=remove_from_cart&id=' . urlencode($item[0]) . '">Xóa</a></td>
-                </tr>';
-            }
-        }
-        echo '<tr>
-            <td colspan="4">Tổng đơn hàng</td>
-            <td colspan="2">' . number_format($tong) . ' VND</td>
-        </tr>';
-        ?>
-    </table>
-    <form class="checkout-form" action="index.php?act=checkout" method="POST">
-        <h2>Thông Tin Đặt Hàng</h2>
-        <label for="name">Tên:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="sdt">Số điện thoại:</label>
-        <input type="tel" id="sdt" name="sdt" required><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-        <label for="address">Địa Chỉ:</label>
-        <input type="text" id="address" name="address" required><br>
-        <button type="submit">Xác Nhận Đặt Hàng</button>
+    <form action="giohang.php" method="POST">
+        <table>
+            <tr>
+                <th>Ảnh Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Thành Tiền</th>
+                <th>Thao Tác</th>
+            </tr>
+            <?php
+            viewcart(); // Gọi hàm viewcart() để hiển thị giỏ hàng
+            ?>
+            <tr>
+                <td colspan="4">Tổng đơn hàng</td>
+                <td colspan="2" id="total"><?php echo number_format($tong); ?> VND</td>
+            </tr>
+        </table>
+        <a href="http://localhost/DA1_NHOM2/index.php" style="
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        ">Quay Về Trang Chủ</a>
+        <a href="bill.php" style="
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        ">Tiến Hành Đặt Hàng</a>
     </form>
 </body>
-
 </html>

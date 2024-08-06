@@ -59,16 +59,19 @@
                 <div class="col-2"><a href="#">Giới Thiệu</a></div>
                 <div class="col-2"><a href="#">Liên Hệ</a></div>
                 <div class="col-2"><a href="#">Xem Thêm</a></div>
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 1): ?>
+                    <div class="col-2"><a href="admin/index.php?act=listsp">Trang Admin</a></div>
+                <?php endif; ?>
             </div>
             <div class="header-icons">
                 <input type="search" placeholder="Tìm kiếm sản phẩm...">
                 <a href="view/giohang.php"><i class="fas fa-shopping-cart"></i> Giỏ Hàng</a>
-                <a href="#"><i class="fas fa-file-alt"></i> Đơn Hàng</a>
+                <a href="view/donhang.php"><i class="fas fa-file-alt"></i> Đơn Hàng</a>
                 <div class="account-menu">
                     <button id="account-button"><i class="fas fa-user"></i>
                         <?php
                         if (isset($_SESSION['user'])) {
-                            echo $_SESSION['user']['ten']; 
+                            echo htmlspecialchars($_SESSION['user']['ten']); 
                         } else {
                             echo 'Tài Khoản';
                         }
@@ -76,6 +79,7 @@
                     </button>
                     <div class="account-dropdown-content">
                         <?php if (isset($_SESSION['user'])): ?>
+                            <a href="view/taikhoan/capnhaptk.php">Cập Nhật</a>
                             <a href="view/taikhoan/logout.php">Đăng Xuất</a>
                         <?php else: ?>
                             <a href="view/taikhoan/dangki.php">Đăng Ký</a>

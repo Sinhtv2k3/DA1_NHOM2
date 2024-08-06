@@ -1,4 +1,3 @@
-<!-- index.php hoặc trang cần sử dụng boxtrai -->
 <div class="row box">
     <?php include 'boxtrai.php'; ?>
     <div class="boxphai">
@@ -30,7 +29,20 @@
         </div>
 
         <div class="nut">
-            <a href="index.php?act=adddm"><i class="fas fa-plus"></i></a>
+            <a href="index.php?act=adddm" style="
+                display: inline-flex;
+                align-items: center;
+                background-color: #28a745; /* Màu xanh lá */
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: bold;
+                transition: background-color 0.3s, transform 0.3s;
+            " onmouseover="this.style.backgroundColor='#218838'; this.style.transform='scale(1.05)';" onmouseout="this.style.backgroundColor='#28a745'; this.style.transform='scale(1)';" onclick="this.style.backgroundColor='#1e7e34';">
+                Thêm mới <i class="fas fa-plus" style="margin-left: 8px;"></i>
+            </a>
         </div>
     </div>
 </div>

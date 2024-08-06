@@ -162,6 +162,78 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 exit();
             }
             break;
+
+        case 'listtk':
+            // Lấy từ POST nếu có tìm kiếm
+            $kyw = isset($_POST['kyw']) ? $_POST['kyw'] : '';
+            $id_dm = isset($_POST['id_dm']) ? $_POST['id_dm'] : 0;
+            $role = isset($_POST['role']) ? $_POST['role'] : null;
+
+            // Gọi hàm để lấy danh sách tài khoản
+            $listtaikhoan = loadall_taikhoan($kyw, $id_dm, $role);
+
+            // Bao gồm tệp view để hiển thị
+            include "taikhoan/listtk.php";
+            break;
+        case 'xoatk':
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                delete_taikhoan($_GET['id']);
+            }
+            $listtaikhoan = loadall_taikhoan('', 0);
+            include "taikhoan/listtk.php";
+            break;
+            case 'update':
+                // Hiển thị trang cập nhật và load thông tin tài khoản
+                if (isset($_GET['id_tk']) && $_GET['id_tk'] > 0) {
+                    $id_tk = $_GET['id_tk'];
+                    $taikhoan = loadone_taikhoan($id_tk); // Tải thông tin tài khoản
+                    if (!$taikhoan) {
+                        echo "Tài khoản không tồn tại!";
+                        exit();
+                    }
+                    include "taikhoan/update.php"; // Hiển thị form cập nhật
+                } else {
+                    echo "ID tài khoản không hợp lệ!";
+                    exit();
+                }
+                break;
+            
+            // Xử lý cập nhật
+            if (isset($_POST['capnhat'])) {
+                $id_tk = $_POST['id_tk'];
+                $ten = $_POST['ten'];
+                $sdt = $_POST['sdt'];
+                $email = $_POST['email'];
+                $dia_chi = $_POST['dia_chi'];
+                // Gọi hàm update_taikhoan mà không bao gồm mật khẩu
+                update_taikhoan($id_tk, $ten, $email, $sdt, $dia_chi);
+                // Redirect hoặc thông báo sau khi cập nhật
+            }
+
+            case 'updateprocess':
+                // Xử lý cập nhật tài khoản
+                if (isset($_POST['capnhat'])) {
+                    $id_tk = isset($_POST['id_tk']) ? $_POST['id_tk'] : null;
+                    $ten = isset($_POST['ten']) ? $_POST['ten'] : '';
+                    $sdt = isset($_POST['sdt']) ? $_POST['sdt'] : '';
+                    $email = isset($_POST['email']) ? $_POST['email'] : '';
+                    $dia_chi = isset($_POST['dia_chi']) ? $_POST['dia_chi'] : '';
+                    $ten_nd = isset($_POST['ten_nd']) ? $_POST['ten_nd'] : '';
+                    $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : 0;
+                    $role = isset($_POST['role']) ? $_POST['role'] : '';
+            
+                    // Cập nhật tài khoản
+                    update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role);
+            
+                    $thongbao = "Cập nhật thành công";
+                    header("Location: index.php?act=listtk");
+                    exit();
+                } else {
+                    echo "Không nhận được dữ liệu để cập nhật!";
+                    exit();
+                }
+                break;
+
         case 'listdh':
             $listdonhang = loadall_donhang();
             if (empty($listdonhang)) {
