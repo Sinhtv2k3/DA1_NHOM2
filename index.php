@@ -176,16 +176,7 @@ if ($act) {
             }
             break;
 
-        case 'donhang':
-            if (isset($_GET['id_dh']) && ($_GET['id_dh'] > 0)) {
-                $id_dh = $_GET['id_dh'];
-                $donhang = load_donhang($id_dh);
-                $chitiet_donhang = load_chitiet_donhang($id_dh);
-                include "view/donhang.php";
-            } else {
-                include "view/home.php";
-            }
-            break;
+       
         default:
             include "view/home.php";
             break;

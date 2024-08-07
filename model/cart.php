@@ -39,15 +39,15 @@ function insert_dh($sl, $tong_tien, $ten_nd, $sdt, $dia_chi, $email, $trangthai 
     pdo_execute($sql, $sql_args);
 }
 
-function loadall_donhang()
-{
-    $sql = "SELECT c.id_ct_hd, c.sl, c.tong_tien, c.ten_nd, c.sdt, c.dia_chi, c.email, c.trangthai, c.id_hd, c.id_sp, h.ngay AS ngay_dat
-            FROM cthoadon c
-            JOIN hoadon h ON c.id_hd = h.id_hd
-            ORDER BY c.id_ct_hd ASC";
-    $listdonhang = pdo_query($sql);
-    return $listdonhang;
-}
+// function loadall_donhang()
+// {
+//     $sql = "SELECT c.id_ct_hd, c.sl, c.tong_tien, c.ten_nd, c.sdt, c.dia_chi, c.email, c.trangthai, c.id_hd, c.id_sp, h.ngay AS ngay_dat
+//             FROM cthoadon c
+//             JOIN hoadon h ON c.id_hd = h.id_hd
+//             ORDER BY c.id_ct_hd ASC";
+//     $listdonhang = pdo_query($sql);
+//     return $listdonhang;
+// }
 
 function view_donhang($id)
 {

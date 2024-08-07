@@ -3,6 +3,7 @@
 include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
+include "../model/donhang.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/cart.php";
@@ -182,22 +183,22 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
             $listtaikhoan = loadall_taikhoan('', 0);
             include "taikhoan/listtk.php";
             break;
-            case 'update':
-                // Hiển thị trang cập nhật và load thông tin tài khoản
-                if (isset($_GET['id_tk']) && $_GET['id_tk'] > 0) {
-                    $id_tk = $_GET['id_tk'];
-                    $taikhoan = loadone_taikhoan($id_tk); // Tải thông tin tài khoản
-                    if (!$taikhoan) {
-                        echo "Tài khoản không tồn tại!";
-                        exit();
-                    }
-                    include "taikhoan/update.php"; // Hiển thị form cập nhật
-                } else {
-                    echo "ID tài khoản không hợp lệ!";
+        case 'update':
+            // Hiển thị trang cập nhật và load thông tin tài khoản
+            if (isset($_GET['id_tk']) && $_GET['id_tk'] > 0) {
+                $id_tk = $_GET['id_tk'];
+                $taikhoan = loadone_taikhoan($id_tk); // Tải thông tin tài khoản
+                if (!$taikhoan) {
+                    echo "Tài khoản không tồn tại!";
                     exit();
                 }
-                break;
-            
+                include "taikhoan/update.php"; // Hiển thị form cập nhật
+            } else {
+                echo "ID tài khoản không hợp lệ!";
+                exit();
+            }
+            break;
+
             // Xử lý cập nhật
             if (isset($_POST['capnhat'])) {
                 $id_tk = $_POST['id_tk'];
@@ -210,38 +211,62 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 // Redirect hoặc thông báo sau khi cập nhật
             }
 
-            case 'updateprocess':
-                // Xử lý cập nhật tài khoản
-                if (isset($_POST['capnhat'])) {
-                    $id_tk = isset($_POST['id_tk']) ? $_POST['id_tk'] : null;
-                    $ten = isset($_POST['ten']) ? $_POST['ten'] : '';
-                    $sdt = isset($_POST['sdt']) ? $_POST['sdt'] : '';
-                    $email = isset($_POST['email']) ? $_POST['email'] : '';
-                    $dia_chi = isset($_POST['dia_chi']) ? $_POST['dia_chi'] : '';
-                    $ten_nd = isset($_POST['ten_nd']) ? $_POST['ten_nd'] : '';
-                    $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : 0;
-                    $role = isset($_POST['role']) ? $_POST['role'] : '';
-            
-                    // Cập nhật tài khoản
-                    update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role);
-            
-                    $thongbao = "Cập nhật thành công";
-                    header("Location: index.php?act=listtk");
-                    exit();
-                } else {
-                    echo "Không nhận được dữ liệu để cập nhật!";
-                    exit();
-                }
-                break;
+        case 'updateprocess':
+            // Xử lý cập nhật tài khoản
+            if (isset($_POST['capnhat'])) {
+                $id_tk = isset($_POST['id_tk']) ? $_POST['id_tk'] : null;
+                $ten = isset($_POST['ten']) ? $_POST['ten'] : '';
+                $sdt = isset($_POST['sdt']) ? $_POST['sdt'] : '';
+                $email = isset($_POST['email']) ? $_POST['email'] : '';
+                $dia_chi = isset($_POST['dia_chi']) ? $_POST['dia_chi'] : '';
+                $ten_nd = isset($_POST['ten_nd']) ? $_POST['ten_nd'] : '';
+                $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : 0;
+                $role = isset($_POST['role']) ? $_POST['role'] : '';
+
+                // Cập nhật tài khoản
+                update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role);
+
+                $thongbao = "Cập nhật thành công";
+                header("Location: index.php?act=listtk");
+                exit();
+            } else {
+                echo "Không nhận được dữ liệu để cập nhật!";
+                exit();
+            }
+            break;
 
         case 'listdh':
             $listdonhang = loadall_donhang();
-            if (empty($listdonhang)) {
-                echo "Không có đơn hàng nào!";
-            } else {
-                include "donhang/listdh.php";
-            }
+            include "donhang/listdh.php";
             break;
+
+        case 'accept_donhang':
+            $id_dh = $_GET['id'];
+            update_donhang($id_dh, 1); // Cập nhật trạng thái thành "Đang giao"
+            header('Location: index.php?act=listdh');
+            exit();
+            break;
+        case 'track_donhang':
+            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $id_dh = $_GET['id'];
+                update_donhang($id_dh, 2); // Chuyển trạng thái đơn hàng thành "Hoàn Thành" (2)
+            } else {
+                echo "ID đơn hàng không hợp lệ.";
+            }
+            header('Location: index.php?act=listdh');
+            exit();
+            break;
+
+        case 'delete_donhang':
+            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $id_dh = $_GET['id'];
+                delete_donhang($id_dh); // Xóa đơn hàng
+            } else {
+                echo "ID đơn hàng không hợp lệ.";
+            }
+            header('Location: index.php?act=listdh');
+            exit();
+
 
         default:
             include "home.php";
@@ -250,84 +275,3 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
 } else {
     include "home.php";
 }
-
-// case 'updatesp':
-
-//     $listdanhmuc = loadall_danhmuc();
-//     $listsanpham = loadall_sanpham();
-//     include "sanpham/list.php";
-//     break;
-// case 'taikhoan':
-//     $listtaikhoan = loadall_taikhoan();
-//     include "taikhoan/list.php";
-//     break;
-// case 'xoatk':
-//     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-//         delete_taikhoan($_GET['id']);
-//     }
-//     $listtaikhoan = loadall_taikhoan();
-//     include "taikhoan/list.php";
-//     break;
-// case 'dsbl':
-//     $listbinhluan = loadall_binhluan(0);
-//     include "binhluan/binhluan.php";
-//     break;
-// case 'xoabl':
-//     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-//         delete_binhluan($_GET['id']);
-//     }
-//     $listbinhluan = loadall_binhluan(0);
-//     include "binhluan/binhluan.php";
-//     break;
-
-
-
-// case 'donhang': {
-//         $listbill = loadall_bill();
-//         include 'donhang/listdh.php';
-//         break;
-//     }
-// case 'ttdh': {
-//         if (isset($_GET['iddh']) && ($_GET['iddh'])) {
-//             $bill = loadone_bill($_GET['iddh']);
-//         }
-//         if (isset($_POST['btnsub'])) {
-//             $iddh = $_POST['iddh'];
-//             $ttdh = $_POST['ttdh'];
-//             thaydoi_trangthai($ttdh, $iddh);
-//             header('location: ?act=donhang');
-//         }
-//         include 'donhang/ttdh.php';
-//         break;
-//     }
-// case 'thongke':
-//     $listthongke = loadall_thongke();
-//     include "thongke.php";
-//     break;
-// case 'bieudo':
-//     if (isset($_POST['btnsub'])) {
-//         $listthongke = loadall_thongke();
-//     }
-
-//     if (isset($_POST['tk_donhang'])) {
-//         $listthongke_thang = load_thongke_sanpham_donhang();
-//     }
-
-//     if (isset($_GET['type']) && $_GET['type'] == 'month') {
-//         $listthongke_thang = load_thongke_sanpham_donhang();
-//     } else if (isset($_GET['type']) && $_GET['type'] == 'week') {
-//         $listthongke_tuan = load_thongke_sanpham_donhang_tuan();
-//     } else if (isset($_GET['type']) && $_GET['type'] == 'day') {
-//         $listthongke_ngay = load_thongke_sanpham_donhang_ngay();
-//         //                                 echo "<pre>";
-//         // print_r($listthongke_ngay);
-//         // die;
-//     } else {
-//         $listthongke_thang = load_thongke_sanpham_donhang();
-//     }
-
-//     include "bieudo.php";
-//     break;
-// default:
-//     include "home.php";
-//     break;
