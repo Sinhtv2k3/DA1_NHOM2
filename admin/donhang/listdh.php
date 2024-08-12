@@ -1,3 +1,14 @@
+<?php
+$listdonhang = loadall_donhang();
+if (is_array($listdonhang)) : ?>
+    <?php foreach ($listdonhang as $donhang) : ?>
+        <tr>
+            <!-- Your row code here -->
+        </tr>
+    <?php endforeach; ?>
+<?php else : ?>
+    <tr><td colspan="8">Không có đơn hàng nào.</td></tr>
+<?php endif; ?>
 <div class="row box">
     <?php include 'boxtrai.php'; ?>
     <div class="boxphai">

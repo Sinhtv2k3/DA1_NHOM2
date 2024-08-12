@@ -13,16 +13,16 @@ function insert_donhang($ngay_dat, $ten_nd, $sdt, $email, $dia_chi, $payment_met
 /**
  * Thêm chi tiết đơn hàng vào bảng chitiet_donhang
  */
-function insert_chitiet_donhang($id_dh, $id_sp, $ten_sp, $gia, $sl, $tongtien)
+function insert_chitiet_donhang($id_dh, $id_sp, $ten_sp, $gia, $sl, $tongtien, $id_tk)
 {
-    $sql = "INSERT INTO chitiet_donhang (id_dh, id_sp, ten_sp, gia, sl, tongtien) VALUES (?, ?, ?, ?, ?, ?)";
-    pdo_execute($sql, [$id_dh, $id_sp, $ten_sp, $gia, $sl, $tongtien]);
+    $sql = "INSERT INTO chitiet_donhang (id_dh, id_sp, ten_sp, gia, sl, tongtien, id_tk) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, [$id_dh, $id_sp, $ten_sp, $gia, $sl, $tongtien, $id_tk]);
 }
 
 /**
  * Tạo đơn hàng mới
  */
-function create_order($name, $phone, $email, $address, $payment_method)
+function create_order($name, $phone, $email, $address, $payment_method, $id_tk)
 {
     $pdo = pdo_get_connection(); // Tạo kết nối PDO
 
@@ -35,7 +35,7 @@ function create_order($name, $phone, $email, $address, $payment_method)
 
         // Thêm các sản phẩm vào bảng chi tiết đơn hàng
         foreach ($_SESSION['myCart'] as $product) {
-            insert_chitiet_donhang($order_id, $product[0], $product[1], $product[3], $product[4], $product[3] * $product[4]);
+            insert_chitiet_donhang($order_id, $product[0], $product[1], $product[3], $product[4], $product[3] * $product[4], $id_tk);
         }
 
         // Cam kết giao dịch
@@ -73,17 +73,6 @@ function load_order_details_by_id($id) {
     $sql = "SELECT * FROM chitiet_donhang WHERE id_dh = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-/**
- * Lấy danh sách đơn hàng
- */
-function load_all_orders() {
-    global $pdo;
-    $sql = "SELECT * FROM donhang";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>

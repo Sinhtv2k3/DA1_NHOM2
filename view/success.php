@@ -43,7 +43,7 @@
 <body>
     <div class="container">
         <h1>Đơn hàng của bạn đã được gửi thành công!</h1>
-        <p>Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi. Chúng tôi sẽ xử lý đơn hàng của bạn và gửi thông tin chi tiết qua email.</p>
+        <p>Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi. Hãy kiểm tra tình trạng ở đơn hàng.</p>
         <a href="http://localhost/DA1_NHOM2/index.php" class="button">Quay về trang chủ</a>
     </div>
 </body>

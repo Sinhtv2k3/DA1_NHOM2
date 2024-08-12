@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Đặt kiểu cho container chính */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Đặt kiểu cho tiêu đề */
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Đặt kiểu cho bảng */
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Đặt kiểu cho tiêu đề bảng */
+.table-container th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Đặt kiểu cho các ô bảng */
+.table-container td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Đặt kiểu cho hàng bảng khi di chuột qua */
+.table-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Đặt kiểu cho hàng bảng khi di chuột qua */
+.table-container tr:hover {
+    background-color: #ddd;
+}
+
+/* Đặt kiểu cho các ô của bảng */
+.table-container th, .table-container td {
+    text-align: left;
+}
+
+/* Đặt kiểu cho các thuộc tính khác */
+.container p {
+    font-size: 16px;
+    color: #666;
+}
+.btn-home {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Màu nền của nút */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Khoảng cách dưới nút */
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-home i {
+    margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+.btn-home:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột qua */
+}

@@ -7,6 +7,7 @@ include_once "model/taikhoan.php";
 include_once "model/danhmuc.php";
 include_once "model/cart.php";
 include_once "model/hoadon.php";
+include_once "model/donhang.php";
 include_once "gobal.php";
 
 // Khởi tạo giỏ hàng nếu chưa có
@@ -40,23 +41,24 @@ if ($act) {
             include "view/taikhoan/dangki.php";
             break;
 
-        case 'dangnhap':
-            if (isset($_POST['dangnhap'])) {
-                $email = $_POST['email'];
-                $mk = $_POST['password'];
-                $user = check_user($email, $mk);
-                if ($user) {
-                    $_SESSION['user'] = $user;
-                    $_SESSION['login_message'] = "Đăng nhập thành công!";
-                    header('Location: /DA1_NHOM2/index.php');
-                    exit();
-                } else {
-                    $_SESSION['login_message'] = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
-                    header('Location: /DA1_NHOM2/view/taikhoan/dangnhap.php');
-                    exit();
+            case 'dangnhap':
+                if (isset($_POST['dangnhap'])) {
+                    $email = $_POST['email'];
+                    $mk = $_POST['password'];
+                    $user = check_user($email, $mk);
+                    if ($user) {
+                        $_SESSION['user'] = $user;
+                        $_SESSION['id_tk'] = $user['id_tk']; 
+                        $_SESSION['login_message'] = "Đăng nhập thành công!";
+                        header('Location: /DA1_NHOM2/index.php');
+                        exit();
+                    } else {
+                        $_SESSION['login_message'] = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
+                        header('Location: /DA1_NHOM2/view/taikhoan/dangnhap.php');
+                        exit();
+                    }
                 }
-            }
-            break;
+                break;
 
         case 'sanphamct':
             if (isset($_GET['id_sp']) && ($_GET['id_sp'] > 0)) {
@@ -132,14 +134,15 @@ if ($act) {
                 $email = $_POST['email'];
                 $dia_chi = $_POST['address'];
                 $payment_method = $_POST['payment_method']; // Giả sử bạn có trường này trong form
+                $id_tk = $_SESSION['user']['id_tk']; // Giả sử id_tk có trong $_SESSION['user']
 
                 try {
                     // Thêm đơn hàng
-                    $id_dh = insert_donhang($ngay_dat, $ten_nd, $sdt, $email, $dia_chi, $payment_method);
+                    $id_dh = insert_donhang($ngay_dat, $ten_nd, $sdt, $email, $dia_chi, $payment_method, $id_tk);
 
                     // Thêm chi tiết đơn hàng
                     foreach ($_SESSION['myCart'] as $item) {
-                        insert_chitiet_donhang($id_dh, $item[0], $item[1], $item[3], $item[4], $item[5]);
+                        insert_chitiet_donhang($id_dh, $item[0], $item[1], $item[3], $item[4], $item[5], $id_tk);
                     }
 
                     // Xóa giỏ hàng sau khi đặt hàng thành công
@@ -159,6 +162,7 @@ if ($act) {
             include "view/bill.php";
             break;
 
+
         case 'capnhaptk':
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['capnhat'])) {
                 $id_tk = $_POST['id'];
@@ -176,7 +180,23 @@ if ($act) {
             }
             break;
 
-       
+            case 'donhang':
+                // Lấy id_tk từ session hoặc request
+                $id_tk = $_SESSION['id_tk'] ?? null; // Hoặc $_GET['id_tk'] nếu muốn lấy từ URL
+            
+                // Kiểm tra xem id_tk có hợp lệ không
+                if (!$id_tk) {
+                    echo 'Thông tin tài khoản không hợp lệ.';
+                    exit;
+                }
+            
+                // Lấy danh sách đơn hàng của người dùng
+                $listdonhang = load_donhang_user($id_tk);
+            
+                // Bao gồm trang hiển thị đơn hàng của người dùng
+                include 'view/donhang.php';
+                break;
+
         default:
             include "view/home.php";
             break;
