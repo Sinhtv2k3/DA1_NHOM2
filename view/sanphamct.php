@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,11 +30,17 @@
             gap: 20px;
             width: 100%;
             max-width: 1200px;
+            padding-left: 200px;
         }
 
-        .trai, .phai {
+        .trai {
             flex: 1;
         }
+
+        .phai {
+            flex: 1;
+        }
+
 
         .imgct img {
             max-width: 100%;
@@ -85,13 +92,14 @@
         }
     </style>
 </head>
+
 <body>
     <?php include "view/header.php"; ?>
 
     <div class="boxspct">
         <div class="spchitiet">
             <div class="trai">
-                <div class="imgct">  
+                <div class="imgct">
                     <img src="<?php echo $img_path . $onesp['anh']; ?>" alt="Product Image">
                 </div>
             </div>
@@ -105,7 +113,7 @@
                     <p><?php echo number_format($onesp['gia']); ?> VND</p>
                 </div>
                 <div class="cm">
-                <span>Mô tả sản phẩm:</span><br>
+                    <span>Mô tả sản phẩm:</span><br>
                     <span><?php echo $onesp['mo_ta']; ?></span>
                 </div>
                 <form action="index.php?act=addToCart" method="POST">
@@ -131,4 +139,5 @@
 
     <?php include "view/footer.php"; ?>
 </body>
+
 </html>

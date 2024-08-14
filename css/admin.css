@@ -285,3 +285,15 @@ img {
 .confim:hover {
   background: #0056b3;
 }
+.icon {
+  color: gray; /* Màu sắc mặc định của các icon */
+  transition: color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+}
+
+.icon.active {
+  color: blue; /* Màu sắc cho các icon hoạt động */
+}
+
+.icon.disabled {
+  color: gray; /* Màu sắc cho các icon không hoạt động */
+}

@@ -100,7 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
             Chuyển khoản
         </label><br>
         
-        <img id="qr-code" src="../upload/4128Nh_2021-06-15_Lu.jpeg" alt="QR Code" style="display: none; width: 200px; height: 200px;">
+        <!-- <img id="qr-code" src="../upload/4128Nh_2021-06-15_Lu.jpeg" alt="QR Code" style="display: none; width: 200px; height: 200px;">
+        <img id="qr-code" src="../upload/MinhBao-1-878x1024.png" alt="QR Code" style="display: none; width: 200px; height: 200px;"> -->
+        <img id="qr-code" src="../upload/453507250_1326174345212710_5500500719759951119_n (1).jpg" alt="QR Code" style="display: none; width: 200px; height: 200px;">
         
         <button type="submit" name="confirm">Đặt hàng</button>
     </form>

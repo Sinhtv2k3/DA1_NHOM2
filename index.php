@@ -41,24 +41,24 @@ if ($act) {
             include "view/taikhoan/dangki.php";
             break;
 
-            case 'dangnhap':
-                if (isset($_POST['dangnhap'])) {
-                    $email = $_POST['email'];
-                    $mk = $_POST['password'];
-                    $user = check_user($email, $mk);
-                    if ($user) {
-                        $_SESSION['user'] = $user;
-                        $_SESSION['id_tk'] = $user['id_tk']; 
-                        $_SESSION['login_message'] = "Đăng nhập thành công!";
-                        header('Location: /DA1_NHOM2/index.php');
-                        exit();
-                    } else {
-                        $_SESSION['login_message'] = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
-                        header('Location: /DA1_NHOM2/view/taikhoan/dangnhap.php');
-                        exit();
-                    }
+        case 'dangnhap':
+            if (isset($_POST['dangnhap'])) {
+                $email = $_POST['email'];
+                $mk = $_POST['password'];
+                $user = check_user($email, $mk);
+                if ($user) {
+                    $_SESSION['user'] = $user;
+                    $_SESSION['id_tk'] = $user['id_tk'];
+                    $_SESSION['login_message'] = "Đăng nhập thành công!";
+                    header('Location: /DA1_NHOM2/index.php');
+                    exit();
+                } else {
+                    $_SESSION['login_message'] = "Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu";
+                    header('Location: /DA1_NHOM2/view/taikhoan/dangnhap.php');
+                    exit();
                 }
-                break;
+            }
+            break;
 
         case 'sanphamct':
             if (isset($_GET['id_sp']) && ($_GET['id_sp'] > 0)) {
@@ -180,22 +180,45 @@ if ($act) {
             }
             break;
 
-            case 'donhang':
-                // Lấy id_tk từ session hoặc request
-                $id_tk = $_SESSION['id_tk'] ?? null; // Hoặc $_GET['id_tk'] nếu muốn lấy từ URL
-            
-                // Kiểm tra xem id_tk có hợp lệ không
-                if (!$id_tk) {
-                    echo 'Thông tin tài khoản không hợp lệ.';
-                    exit;
-                }
-            
-                // Lấy danh sách đơn hàng của người dùng
-                $listdonhang = load_donhang_user($id_tk);
-            
-                // Bao gồm trang hiển thị đơn hàng của người dùng
-                include 'view/donhang.php';
-                break;
+        case 'donhang':
+            // Lấy id_tk từ session hoặc request
+            $id_tk = $_SESSION['id_tk'] ?? null; // Hoặc $_GET['id_tk'] nếu muốn lấy từ URL
+
+            // Kiểm tra xem id_tk có hợp lệ không
+            if (!$id_tk) {
+                echo 'Thông tin tài khoản không hợp lệ.';
+                exit;
+            }
+
+            // Lấy danh sách đơn hàng của người dùng
+            $listdonhang = load_donhang_user($id_tk);
+
+            // Bao gồm trang hiển thị đơn hàng của người dùng
+            include 'view/donhang.php';
+            break;
+        case 'filterProducts':
+            $category = isset($_GET['category']) ? $_GET['category'] : '';
+            $products = loadall_sanpham('', $category);
+            foreach ($products as $sp) {
+                $id = $sp['id_sp'];
+                $ten_sp = $sp['ten_sp'];
+                $gia = $sp['gia'];
+                $anh = $img_path . $sp['anh'];
+                $linksp = "index.php?act=sanphamct&id_sp=" . $id;
+                echo '<div class="product-card">
+                                <a href="' . $linksp . '"><img src="' . $anh . '"></a>
+                                <h3>' . $ten_sp . '</h3>
+                                <p>' . $gia . ' VND</p>
+                                <form action="index.php?act=addToCart" method="POST">
+                                    <input type="hidden" name="id_sp" value="' . $id . '">
+                                    <input type="hidden" name="ten_sp" value="' . $ten_sp . '">
+                                    <input type="hidden" name="anh" value="' . $anh . '">
+                                    <input type="hidden" name="gia" value="' . $gia . '">
+                                    <button type="submit" name="addToCart" value="1">Thêm vào Giỏ</button>
+                                </form>
+                            </div>';
+            }
+            break;
 
         default:
             include "view/home.php";
