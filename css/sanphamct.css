@@ -1,101 +1,50 @@
-/* General styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-/* Container for product detail */
+/* Đặt màu nền và canh chỉnh cho các phần tử */
 .boxspct {
-    max-width: 1200px;
-    margin: 20px auto;
+    display: flex;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
 
-/* Product detail layout */
 .spchitiet {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
-.trai, .phai {
+.spchitiet .trai, .spchitiet .phai {
     flex: 1;
-    min-width: 300px;
 }
 
-.trai {
-    padding-right: 20px;
+.trai .imgct img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .phai {
-    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.imgct img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Product description */
-.cm {
-    margin-top: 20px;
-}
-
-.cm strong {
-    font-size: 1.5em;
-    color: #333;
-}
-
-.cm hr {
-    border: 0;
-    border-top: 1px solid #ddd;
-    margin: 10px 0;
-}
-
-.cm span {
-    display: block;
-    margin-top: 10px;
-    color: #555;
-}
-
-/* Product info */
 .ten_sp {
-    font-size: 1.8em;
-    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.ten_sp hr {
-    border: 0;
-    border-top: 1px solid #ddd;
-    margin: 10px 0;
+.gia {
+    font-size: 20px;
+    color: #e74c3c;
 }
 
-/* Product pricing */
-.boxtt .gia {
-    color: #070101;
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-.boxtt .test {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f9e5e5;
-    color: #180302;
-    border-radius: 5px;
-}
-
-/* Quantity input */
 .soluong {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 .soluong .sol {
@@ -104,16 +53,14 @@ body {
 
 .soluong input[type="number"] {
     width: 60px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
 }
 
-/* Buy button */
 form button[type="submit"] {
-    width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #28a745;
     border: none;
     border-radius: 5px;
@@ -121,73 +68,23 @@ form button[type="submit"] {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 form button[type="submit"]:hover {
     background-color: #218838;
 }
 
-/* Notes */
-.luuy ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.luuy li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color: #555;
-}
-
-/* Related products */
-.tengoiy {
+.cm {
     margin-top: 20px;
 }
 
-.boxcontent {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.boxspct {
-    flex: 1 1 calc(33.333% - 20px);
-    box-sizing: border-box;
-    text-align: center;
-    padding: 10px;
-    background-color: #fff;
+.cm hr {
     border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 20px 0;
 }
 
-.boxspct:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.boxspct img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.boxspct a {
+.spchitiet span {
+    font-size: 16px;
     color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-
-.boxspct a:hover {
-    text-decoration: underline;
 }

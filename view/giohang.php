@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
+    
     <h1>Giỏ Hàng</h1>
     <form action="giohang.php" method="POST">
         <table>

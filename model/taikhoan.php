@@ -46,18 +46,16 @@ function loadone_taikhoan($id)
     $sql = "SELECT * FROM taikhoan WHERE id_tk = ?";
     return pdo_query_one($sql, array($id));
 }
-function update_taikhoan($id_tk, $ten, $email, $sdt, $dia_chi) {
+function update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $trangthai) {
     try {
-        $conn = pdo_get_connection(); // Lấy kết nối PDO
-        // Câu lệnh SQL đã được cập nhật để không bao gồm cột password
-        $sql = "UPDATE taikhoan SET ten = ?, sdt = ?, email = ?, dia_chi = ? WHERE id_tk = ?";
+        $conn = pdo_get_connection();
+        $sql = "UPDATE taikhoan SET ten = ?, sdt = ?, email = ?, dia_chi = ?, trangthai = ? WHERE id_tk = ?";
         $stmt = $conn->prepare($sql);
-        // Thực thi câu lệnh với các tham số không bao gồm password
-        $stmt->execute([$ten, $sdt, $email, $dia_chi, $id_tk]);
+        $stmt->execute([$ten, $sdt, $email, $dia_chi, $trangthai, $id_tk]);
     } catch (PDOException $e) {
         throw $e;
     } finally {
-        $conn = null; // Đảm bảo giải phóng kết nối
+        $conn = null;
     }
 }
 

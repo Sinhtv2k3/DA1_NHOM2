@@ -207,24 +207,20 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 $email = $_POST['email'];
                 $dia_chi = $_POST['dia_chi'];
                 // Gọi hàm update_taikhoan mà không bao gồm mật khẩu
-                update_taikhoan($id_tk, $ten, $email, $sdt, $dia_chi);
+                update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $trangthai);
                 // Redirect hoặc thông báo sau khi cập nhật
             }
 
         case 'updateprocess':
-            // Xử lý cập nhật tài khoản
             if (isset($_POST['capnhat'])) {
                 $id_tk = isset($_POST['id_tk']) ? $_POST['id_tk'] : null;
                 $ten = isset($_POST['ten']) ? $_POST['ten'] : '';
                 $sdt = isset($_POST['sdt']) ? $_POST['sdt'] : '';
                 $email = isset($_POST['email']) ? $_POST['email'] : '';
                 $dia_chi = isset($_POST['dia_chi']) ? $_POST['dia_chi'] : '';
-                $ten_nd = isset($_POST['ten_nd']) ? $_POST['ten_nd'] : '';
-                $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : 0;
-                $role = isset($_POST['role']) ? $_POST['role'] : '';
-
-                // Cập nhật tài khoản
-                update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $ten_nd, $trangthai, $role);
+                $trangthai = isset($_POST['trangthai']) ? $_POST['trangthai'] : ''; // Thêm dòng này
+                // Gọi hàm update_taikhoan với tham số trangthai
+                update_taikhoan($id_tk, $ten, $sdt, $email, $dia_chi, $trangthai);
 
                 $thongbao = "Cập nhật thành công";
                 header("Location: index.php?act=listtk");
@@ -234,6 +230,8 @@ if ((isset($_GET['act'])) && ($_GET['act'] != "")) {
                 exit();
             }
             break;
+
+
 
         case 'listdh':
             $listdonhang = loadall_donhang();

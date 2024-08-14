@@ -34,7 +34,7 @@
                     <?php
                     if (isset($listsanpham) && count($listsanpham) > 0) {
                         foreach ($listsanpham as $sanpham) {
-                            $trangthai = $sanpham['trangthai'] == '0' ? 'Còn hàng' : 'Hết hàng';
+                            $trangthai = $sanpham['trangthai'] == '0' ? 'Hoạt động' : 'Không hoạt động';
                             ?>
                             <tr>
                                 <td><?= $sanpham['id_sp'] ?></td>
